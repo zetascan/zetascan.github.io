@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="125px" height="19px" viewBox="0 0 125 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-size="20" font-family="Raanana" letter-spacing="-1.05600007" font-weight="normal">
+        <g id="Artboard" transform="translate(-48.000000, -70.000000)">
+            <g id="Group-2" transform="translate(46.000000, 66.000000)">
+                <g id="Group">
+                    <text id="&gt;metascan" fill="#302D8B">
+                        <tspan x="0" y="14">&gt;</tspan>
+                        <tspan x="7.70376556" y="14" font-family="LucidaGrande-Bold, Lucida Grande" font-weight="bold">metascan</tspan>
+                    </text>
+                    <text id="|api" fill="#7F7F90">
+                        <tspan x="97" y="14">|</tspan>
+                        <tspan x="101.227203" y="14" font-family="LucidaGrande, Lucida Grande">api</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
