@@ -235,6 +235,9 @@
                   <li>
                     <a href="#ip-addresses" class="toc-h2 toc-link" data-title="API Overview">IP Addresses</a>
                   </li>
+                  <li>
+                    <a href="#domains" class="toc-h2 toc-link" data-title="API Overview">Domains</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -407,6 +410,13 @@ You must replace <code>YOURAPIKEY</code> with your personal API key.
 <li><code>127.9.9.3</code> - returning as if in SBL subnet</li>
 <li><code>127.9.9.4</code> - not found (good IP), also contains White List data</li>
 <li><code>::1, ::2, ::3, ::4</code> - returning as above for IPv6.</li>
+</ul>
+<h2 id='domains'>Domains</h2>
+<p>We provide two testing domains:</p>
+
+<ul>
+<li><p><code>baddomain.org</code> - returns as if found in all domain DBs: DBL, and all URIBL</p></li>
+<li><p><code>okdomain.org</code> - returns as if not found in any DB.</p></li>
 </ul>
 <h1 id='http-format'>HTTP Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.metascan.io/v1/check/http/baddomain.org?key<span class="o">=</span>YOURAPIKEY
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?</span>
