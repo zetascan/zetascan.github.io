@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Metascan - API Reference</title>
+    <title>Zetascan - API Reference - v1.020</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -225,6 +225,14 @@
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#api-key" class="toc-h2 toc-link" data-title="Authentication">API key</a>
+                  </li>
+                  <li>
+                    <a href="#ip-authentication" class="toc-h2 toc-link" data-title="Authentication">IP authentication</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#api-overview" class="toc-h1 toc-link" data-title="API Overview">API Overview</a>
@@ -293,15 +301,15 @@
               </ul>
           </li>
           <li>
-            <a href="#metascan-overview" class="toc-h1 toc-link" data-title="Metascan Overview">Metascan Overview</a>
+            <a href="#zetascan-overview" class="toc-h1 toc-link" data-title="Zetascan Overview">Zetascan Overview</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#data-amp-access-methods" class="toc-h2 toc-link" data-title="Metascan Overview">Data &amp; Access Methods</a>
-                  </li>
-                  <li>
-                    <a href="#score-calculation" class="toc-h2 toc-link" data-title="Metascan Overview">Score calculation</a>
+                    <a href="#data-amp-access-methods" class="toc-h2 toc-link" data-title="Zetascan Overview">Data &amp; Access Methods</a>
                   </li>
               </ul>
+          </li>
+          <li>
+            <a href="#score-calculation" class="toc-h1 toc-link" data-title="Score calculation">Score calculation</a>
           </li>
           <li>
             <a href="#data-sources" class="toc-h1 toc-link" data-title="Data Sources">Data Sources</a>
@@ -316,7 +324,7 @@
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='https://metascan.io/signup/?lang=en'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://zetascan.com/signup/?lang=en'>Sign Up for a Developer Key</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -326,27 +334,29 @@
 <blockquote>
 <p>API endpoint:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>https://api.metascan.io/
+<pre class="highlight plaintext"><code>https://api.zetascan.com/
 </code></pre>
-<p>The Metascan Query Services <code>&quot;MQS&quot;</code> was created to facilitate the real-time lookup of IP and Domain threat data into various applications and services. Currently there are dozens of various domain and IP data-feeds available to developers. Many of these feeds are available free of charge and some are paid for services when minimum query levels are exceeded. In addition, there are 2 main problems with trying to incorporate multiple data feed into a solution:</p>
+<p>The Zetascan Query Services <code>&quot;ZQS&quot;</code> was created to facilitate the real-time lookup of IP and Domain threat data into various applications and services. Currently there are dozens of various domain and IP data-feeds available to developers. Many of these feeds are available free of charge and some are paid for services when minimum query levels are exceeded. In addition, there are 2 main problems with trying to incorporate multiple data feed into a solution:</p>
 
 <ol>
 <li><p>The overlap between data feed providers in the content listed (IPs &amp; URIs), and</p></li>
-<li><p>The absence of normalized meta-data related to the IPs or Domains.</p></li>
+<li><p>The absence of normalised meta-data related to the IPs or Domains.</p></li>
 </ol>
 
-<p>Because of the above, many developers asked if we could do something to reduce the complexity related to accessing and using threat data as part of their applications - MQS is our solution. We are introducing a <em>more elegant API for developers</em>, with an affordable pricing model to match.</p>
+<p>Because of the above, many developers asked if we could do something to reduce the complexity related to accessing and using threat data as part of their applications - ZQS is our solution. We are introducing a <em>more elegant API for developers</em>, with an affordable pricing model to match.</p>
 
-<p>To start, <a href="https://metascan.io/signup/?lang=en">signup for a developer key</a> and begin to integrate MQS into your web-apps and mobile applications. </p>
+<p>To start, <a href="https://zetascan.com/signup/?lang=en">signup for a developer key</a> and begin to integrate ZQS into your web-apps and mobile applications. </p>
 <h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code>curl https://api.metascan.io/?key<span class="o">=</span>YOURAPIKEY
+<p>Authentzation to ZQS can be provided via an API key, or specifying your servers IP address.</p>
+<h2 id='api-key'>API key</h2>
+<p>To query the ZQS an API can be specified as an argument. No API key? <a href="https://zetascan.com/signup/?lang=en'">Signup and receive</a> a key instantly. </p>
+
+<p>ZQS uses API keys to allow access to the service, and expects the API key to be included in all requests to the server if IP authentication is not provided.</p>
+<pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/?key<span class="o">=</span>YOURAPIKEY
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?</span>
 <span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.metascan.io/?key=YOURAPIKEY'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.zetascan.com/?key=YOURAPIKEY'</span><span class="p">);</span>
 
 <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
@@ -355,7 +365,7 @@
 </code></pre><pre class="highlight javascript tab-javascript"><code>
 <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
 <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
-<span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.metascan.io/?key=YOURAPIKEY'</span><span class="p">,</span>
+<span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.zetascan.com/?key=YOURAPIKEY'</span><span class="p">,</span>
 <span class="na">dataType</span><span class="p">:</span> <span class="s1">'JSON'</span><span class="p">,</span>
 <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
@@ -367,25 +377,31 @@
 
 <span class="p">});</span>
 </code></pre>
-<p>All queries to MSQ require your API key specified as an argument. No API key? <a href="https://metascan.io/signup/?lang=en'">Signup and receive</a> a key instantly. </p>
-
 <blockquote>
 <p>Make sure to replace <code>YOURAPIKEY</code> with your API key.</p>
 </blockquote>
 
-<p>MSQ uses API keys to allow access to the service, and expects the API key to be included in all requests to the server.</p>
-
 <aside class="notice">
 You must replace <code>YOURAPIKEY</code> with your personal API key.
+</aside>
+
+<aside class="notice">
+Zetascan only accepts the API key using SSL/https. If using the http interface, IP authentication must be used.
+</aside>
+<h2 id='ip-authentication'>IP authentication</h2>
+<p>Alternatively, authentication to ZQS can be allowed by providing your servers IP address via the Zetascan dashboard.</p>
+
+<aside class="notice">
+To query records via the Zetascan DNS service, IP authentication must be used.
 </aside>
 <h1 id='api-overview'>API Overview</h1><h2 id='query-formats'>Query formats</h2>
 <blockquote>
 <p>Query end-points include 4 formatting options:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>https://api.metascan.io/v1/check/http/
-</code></pre><pre class="highlight plaintext"><code>https://api.metascan.io/v1/check/text/
-</code></pre><pre class="highlight plaintext"><code>https://api.metascan.io/v1/check/json/
-</code></pre><pre class="highlight plaintext"><code>https://api.metascan.io/v1/check/jsonx/
+<pre class="highlight plaintext"><code>https://api.zetascan.com/v1/check/http/
+</code></pre><pre class="highlight plaintext"><code>https://api.zetascan.com/v1/check/text/
+</code></pre><pre class="highlight plaintext"><code>https://api.zetascan.com/v1/check/json/
+</code></pre><pre class="highlight plaintext"><code>https://api.zetascan.com/v1/check/jsonx/
 </code></pre>
 <p>You can issue requests to our endpoints from virtually any operating system or programming language. REST queries are extremely fast and provide the reachest set of information about an item. For example, the Spamhaus&#39; CBL data is available only via REST JSONX query.</p>
 
@@ -418,11 +434,11 @@ You must replace <code>YOURAPIKEY</code> with your personal API key.
 <li><p><code>baddomain.org</code> - returns as if found in all domain DBs: DBL, and all URIBL</p></li>
 <li><p><code>okdomain.org</code> - returns as if not found in any DB.</p></li>
 </ul>
-<h1 id='http-format'>HTTP Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.metascan.io/v1/check/http/baddomain.org?key<span class="o">=</span>YOURAPIKEY
+<h1 id='http-format'>HTTP Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/v1/check/http/baddomain.org?key<span class="o">=</span>YOURAPIKEY
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?</span>
 <span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.metascan.io/v1/check/http/baddomain.org?key=YOURAPIKEY'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.zetascan.com/v1/check/http/baddomain.org?key=YOURAPIKEY'</span><span class="p">);</span>
 
 <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
@@ -430,7 +446,7 @@ You must replace <code>YOURAPIKEY</code> with your personal API key.
 <span class="cp">?&gt;</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
 <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
-<span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.metascan.io/v1/check/http/baddomain.org?key=YOURAPIKEY'</span><span class="p">,</span>
+<span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.zetascan.com/v1/check/http/baddomain.org?key=YOURAPIKEY'</span><span class="p">,</span>
 <span class="na">dataType</span><span class="p">:</span> <span class="s1">'text'</span><span class="p">,</span>
 <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
@@ -452,11 +468,11 @@ If the item is not present in any black list, then the answer will be 204 (No Co
 <p>Additional information about the item is found in the response headers. Check the Developers page for more information.</p>
 
 <p>HTTP example - replace &#39;baddomain.org&#39; with your query - IP or domain:</p>
-<h1 id='text-format'>Text Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.metascan.io/v1/check/text/baddomain.org?key<span class="o">=</span>YOURAPIKEY
+<h1 id='text-format'>Text Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/v1/check/text/baddomain.org?key<span class="o">=</span>YOURAPIKEY
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?</span>
 <span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.metascan.io/v1/check/text/baddomain.org?key=YOURAPIKEY'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.zetascan.com/v1/check/text/baddomain.org?key=YOURAPIKEY'</span><span class="p">);</span>
 
 <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
@@ -464,7 +480,7 @@ If the item is not present in any black list, then the answer will be 204 (No Co
 <span class="cp">?&gt;</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
 <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
-<span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.metascan.io/v1/check/text/baddomain.org?key=YOURAPIKEY'</span><span class="p">,</span>
+<span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.zetascan.com/v1/check/text/baddomain.org?key=YOURAPIKEY'</span><span class="p">,</span>
 <span class="na">dataType</span><span class="p">:</span> <span class="s1">'text'</span><span class="p">,</span>
 <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
@@ -479,7 +495,7 @@ If the item is not present in any black list, then the answer will be 204 (No Co
 <blockquote>
 <p>The above example returns text in the format:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>127.9.9.4:false,true,med;metascan.io;99999,-0.1 127.9.9.1:true,false,,0.95,xbl,sbl
+<pre class="highlight plaintext"><code>127.9.9.4:false,true,med;zetascan.com;99999,-0.1 127.9.9.1:true,false,,0.95,xbl,sbl
 </code></pre>
 <p>TEXT returns space separated blocks of information about the lists where the item is found.</p>
 
@@ -497,11 +513,11 @@ If the item is not present in any black list, then the answer will be 204 (No Co
 <li><p>wldata contains the data from the white list, and</p></li>
 <li><p>score is followed by the list of sources where the item was found.</p></li>
 </ul>
-<h1 id='json-format'>JSON Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.metascan.io/v1/check/json/baddomain.org?key<span class="o">=</span>yourkeygoeshere
+<h1 id='json-format'>JSON Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/v1/check/json/baddomain.org?key<span class="o">=</span>yourkeygoeshere
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?</span>
 <span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.metascan.io/v1/check/json/baddomain.org?key=YOURAPIKEY'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.zetascan.com/v1/check/json/baddomain.org?key=YOURAPIKEY'</span><span class="p">);</span>
 
 <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
@@ -512,7 +528,7 @@ If the item is not present in any black list, then the answer will be 204 (No Co
 <span class="cp">?&gt;</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
 <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
-<span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.metascan.io/v1/check/json/baddomain.org?key=YOURAPIKEY'</span><span class="p">,</span>
+<span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.zetascan.com/v1/check/json/baddomain.org?key=YOURAPIKEY'</span><span class="p">,</span>
 <span class="na">dataType</span><span class="p">:</span> <span class="s1">'JSON'</span><span class="p">,</span>
 <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
@@ -553,7 +569,7 @@ If the item is not present in any black list, then the answer will be 204 (No Co
 </tr>
 <tr>
 <td>Found</td>
-<td>True/False if found in MQS</td>
+<td>True/False if found in ZQS</td>
 </tr>
 <tr>
 <td>Score</td>
@@ -565,7 +581,7 @@ If the item is not present in any black list, then the answer will be 204 (No Co
 </tr>
 <tr>
 <td>Sources</td>
-<td>Lists matched from MQS. <a href="#data-amp-access-methods">See list</a> information.</td>
+<td>Lists matched from ZQS. <a href="#data-amp-access-methods">See list</a> information.</td>
 </tr>
 <tr>
 <td>Wl</td>
@@ -584,11 +600,11 @@ If the item is not present in any black list, then the answer will be 204 (No Co
 <td>Success or failure</td>
 </tr>
 </tbody></table>
-<h1 id='jsonx-format'>JSONX Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.metascan.io/v1/check/jsonx/baddomain.org?key<span class="o">=</span>yourkeygoeshere
+<h1 id='jsonx-format'>JSONX Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/v1/check/jsonx/baddomain.org?key<span class="o">=</span>yourkeygoeshere
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?</span>
 <span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.metascan.io/v1/check/jsonx/baddomain.org?key=YOURAPIKEY'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.zetascan.com/v1/check/jsonx/baddomain.org?key=YOURAPIKEY'</span><span class="p">);</span>
 
 <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
@@ -599,7 +615,7 @@ If the item is not present in any black list, then the answer will be 204 (No Co
 <span class="cp">?&gt;</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
 <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
-<span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.metascan.io/v1/check/jsonx/baddomain.org?key=YOURAPIKEY'</span><span class="p">,</span>
+<span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.zetascan.com/v1/check/jsonx/baddomain.org?key=YOURAPIKEY'</span><span class="p">,</span>
 <span class="na">dataType</span><span class="p">:</span> <span class="s1">'JSON'</span><span class="p">,</span>
 <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
@@ -831,7 +847,7 @@ Use JSONX if you require extended information regarding the queried host.
 </tr>
 </tbody></table>
 <h2 id='smtp'>SMTP</h2>
-<p>If using MQS for MTA/SMTP security, JSONX provides extended information that can assist with spam detection and email security for end-user mailboxes.</p>
+<p>If using ZQS for MTA/SMTP security, JSONX provides extended information that can assist with spam detection and email security for end-user mailboxes.</p>
 <h3 id='loc'>LOC</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"class"</span><span class="p">:</span><span class="s2">"LOC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"helos as destination server"</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <table><thead>
@@ -1003,12 +1019,12 @@ Use JSONX if you require extended information regarding the queried host.
 <td>Special category for development purposes.</td>
 </tr>
 </tbody></table>
-<h2 id='multiple-items'>Multiple items</h2><pre class="highlight plaintext"><code>http://api.metascan.io/v1/check/jsonx/127.9.9.1,baddomain.org,127.9.9.4,okdomain.org,::1
+<h2 id='multiple-items'>Multiple items</h2><pre class="highlight plaintext"><code>http://api.zetascan.com/v1/check/jsonx/127.9.9.1,baddomain.org,127.9.9.4,okdomain.org,::1
 </code></pre>
 <p>You can send multiple items in a single request. This will speed up the overall time for answering your query. Whenever possible, please use multiple items in a single query</p>
 <h2 id='browser-access'>Browser access</h2>
 <ul>
-<li><p>Point your browser to <a href="https://metascan.io/query">https://metascan.io/query</a></p></li>
+<li><p>Point your browser to <a href="https://zetascan.com/query">https://zetascan.com/query</a></p></li>
 <li><p>Enter one or more IP addresses or domain names;</p></li>
 </ul>
 
@@ -1020,7 +1036,7 @@ Use JSONX if you require extended information regarding the queried host.
 <h1 id='dns-api'>DNS API</h1>
 <p>We are providing an rbldns-like server that combines the information from all the sources we aggregate.</p>
 
-<p>You should direct your DNS or anti-spam software to query <code>api.metascan.io</code></p>
+<p>You should direct your DNS or anti-spam software to query <code>api.zetascan.com</code></p>
 
 <p>The query string shall be the domain name or IP address, like:</p>
 
@@ -1054,11 +1070,11 @@ DNS queries from unregistered IP addresses will be rejected. You need to registe
 
 <p>Sample dig syntax:</p>
 
-<p><code>dig @api.metascan.io baddomain.org</code></p>
+<p><code>dig @api.zetascan.com baddomain.org</code></p>
 
 <p>Sample NSLOOKUP example:</p>
 
-<p><code>nslookup baddomain.org api.metascan.io</code></p>
+<p><code>nslookup baddomain.org api.zetascan.com</code></p>
 
 <p>Note: If you use Windows&#39; nslookup, you must set the following options: nodefname, nosearch.</p>
 <h1 id='dns-response-codes'>DNS Response codes</h1><h2 id='127-0-0-x'>127.0.0.x</h2>
@@ -1279,8 +1295,8 @@ DNS queries from unregistered IP addresses will be rejected. You need to registe
 <td>Added through Self Service without specific category</td>
 </tr>
 </tbody></table>
-<h1 id='metascan-overview'>Metascan Overview</h1><h2 id='data-amp-access-methods'>Data &amp; Access Methods</h2>
-<p>The MQS service is accessible via 6 different methods: Browser queries, 4 REST services (Text, HTTP, JSON, JSONx) and DNS.</p>
+<h1 id='zetascan-overview'>Zetascan Overview</h1><h2 id='data-amp-access-methods'>Data &amp; Access Methods</h2>
+<p>The ZQS service is accessible via 6 different methods: Browser queries, 4 REST services (Text, HTTP, JSON, JSONx) and DNS.</p>
 
 <p>Currently we derive our results from several providers, including:</p>
 
@@ -1293,12 +1309,12 @@ DNS queries from unregistered IP addresses will be rejected. You need to registe
 
 <p>We also apply internal algorithms for de-duplicating, normalizing and scoring each item in our database, providing a seamless and reliable API end-point for your application.</p>
 
-<p>MSQ queries are answered in less than 1 millisecond, and expect no longer then 10 milliseconds for a query reply.</p>
+<p>ZQS queries are answered in less than 1 millisecond, and expect no longer then 10 milliseconds for a query reply.</p>
 
-<p>An MQS virtual appliance is also available for on-premises installation for super-fast access. Please contact us for details about that option.</p>
+<p>An ZQS virtual appliance is also available for on-premises installation for super-fast access. Please contact us for details about that option.</p>
 
-<p>All our sources are updated at very frequent intervals. We are also using real-time streams, so you may rest assured that you get the latest information from MQS.</p>
-<h2 id='score-calculation'>Score calculation</h2>
+<p>All our sources are updated at very frequent intervals. We are also using real-time streams, so you may rest assured that you get the latest information from ZQS.</p>
+<h1 id='score-calculation'>Score calculation</h1>
 <p>We are calculating the score for each item, based on where it is found, the additional information we have about the item (e.g. exploit type, bot, etc.) and whether it is found in one or more lists.</p>
 
 <p>The minimum score is -0.1, meaning that an item was found in White List only. Score 0 means that the item is not found in our DB, and the maximum score is 1. In general, items with score above 0.35 shall be considered as spam or fraud.</p>
@@ -1315,7 +1331,7 @@ DNS queries from unregistered IP addresses will be rejected. You need to registe
 
 <p>On the other hand, we have also information about White Lists presence of IP address, for example DNSWL.</p>
 
-<p>Unlike other lists, MQS analyzes the data about each IP address and provides normalized, de-duplicated, and pre-processed information about each IP address, containing internally calculated score (reputation), last modified timestamp, list of BL / WL where the item appears, etc.</p>
+<p>Unlike other lists, ZQS analyzes the data about each IP address and provides normalized, de-duplicated, and pre-processed information about each IP address, containing internally calculated score (reputation), last modified timestamp, list of BL / WL where the item appears, etc.</p>
 <h2 id='domains-sources'>Domains sources</h2>
 <p>At this stage we aggregate data from two main Domain providers:</p>
 
