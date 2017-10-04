@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Zetascan - API Reference - v1.020</title>
+    <title>Zetascan - API Reference - v2.0</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;php&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;php&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -213,7 +213,6 @@
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
               <a href="#" data-language-name="php">php</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -222,6 +221,9 @@
       <div id="toc" class="toc-list-h1">
           <li>
             <a href="#api-introduction" class="toc-h1 toc-link" data-title="API Introduction">API Introduction</a>
+          </li>
+          <li>
+            <a href="#developer-library" class="toc-h1 toc-link" data-title="Developer library">Developer library</a>
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
@@ -241,84 +243,135 @@
                     <a href="#query-formats" class="toc-h2 toc-link" data-title="API Overview">Query formats</a>
                   </li>
                   <li>
-                    <a href="#ip-addresses" class="toc-h2 toc-link" data-title="API Overview">IP Addresses</a>
+                    <a href="#score-calculation" class="toc-h2 toc-link" data-title="API Overview">Score calculation</a>
                   </li>
                   <li>
-                    <a href="#domains" class="toc-h2 toc-link" data-title="API Overview">Domains</a>
+                    <a href="#test-cases" class="toc-h2 toc-link" data-title="API Overview">Test Cases</a>
+                  </li>
+                  <li>
+                    <a href="#error-handling" class="toc-h2 toc-link" data-title="API Overview">Error handling</a>
                   </li>
               </ul>
           </li>
           <li>
             <a href="#http-format" class="toc-h1 toc-link" data-title="HTTP Format">HTTP Format</a>
-          </li>
-          <li>
-            <a href="#text-format" class="toc-h1 toc-link" data-title="Text Format">Text Format</a>
-          </li>
-          <li>
-            <a href="#json-format" class="toc-h1 toc-link" data-title="JSON Format">JSON Format</a>
-          </li>
-          <li>
-            <a href="#jsonx-format" class="toc-h1 toc-link" data-title="JSONX Format">JSONX Format</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#jsonx-response" class="toc-h2 toc-link" data-title="JSONX Format">JSONX response:</a>
+                    <a href="#response-headers" class="toc-h2 toc-link" data-title="HTTP Format">Response headers</a>
                   </li>
                   <li>
-                    <a href="#query-parameters" class="toc-h2 toc-link" data-title="JSONX Format">Query Parameters</a>
+                    <a href="#error-handling-2" class="toc-h2 toc-link" data-title="HTTP Format">Error handling</a>
                   </li>
                   <li>
-                    <a href="#bot" class="toc-h2 toc-link" data-title="JSONX Format">Bot</a>
-                  </li>
-                  <li>
-                    <a href="#smtp" class="toc-h2 toc-link" data-title="JSONX Format">SMTP</a>
-                  </li>
-                  <li>
-                    <a href="#multiple-items" class="toc-h2 toc-link" data-title="JSONX Format">Multiple items</a>
-                  </li>
-                  <li>
-                    <a href="#browser-access" class="toc-h2 toc-link" data-title="JSONX Format">Browser access</a>
+                    <a href="#multiple-items" class="toc-h2 toc-link" data-title="HTTP Format">Multiple items</a>
                   </li>
               </ul>
           </li>
           <li>
+            <a href="#text-format" class="toc-h1 toc-link" data-title="Text Format">Text Format</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#format" class="toc-h2 toc-link" data-title="Text Format">Format</a>
+                  </li>
+                  <li>
+                    <a href="#error-handling-3" class="toc-h2 toc-link" data-title="Text Format">Error handling</a>
+                  </li>
+                  <li>
+                    <a href="#multiple-items-2" class="toc-h2 toc-link" data-title="Text Format">Multiple items</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#json-format" class="toc-h1 toc-link" data-title="JSON Format">JSON Format</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#json-response" class="toc-h2 toc-link" data-title="JSON Format">JSON response</a>
+                  </li>
+                  <li>
+                    <a href="#error-handling-4" class="toc-h2 toc-link" data-title="JSON Format">Error handling</a>
+                  </li>
+                  <li>
+                    <a href="#multiple-items-3" class="toc-h2 toc-link" data-title="JSON Format">Multiple items</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#jsonx-format" class="toc-h1 toc-link" data-title="JSONx Format">JSONx Format</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#jsonx-response" class="toc-h2 toc-link" data-title="JSONx Format">JSONx response</a>
+                  </li>
+                  <li>
+                    <a href="#query-parameters" class="toc-h2 toc-link" data-title="JSONx Format">Query Parameters</a>
+                  </li>
+                  <li>
+                    <a href="#bot" class="toc-h2 toc-link" data-title="JSONx Format">Bot</a>
+                  </li>
+                  <li>
+                    <a href="#sinkhole" class="toc-h2 toc-link" data-title="JSONx Format">Sinkhole</a>
+                  </li>
+                  <li>
+                    <a href="#web-server-compromises" class="toc-h2 toc-link" data-title="JSONx Format">Web-Server Compromises</a>
+                  </li>
+                  <li>
+                    <a href="#web-server-attacks" class="toc-h2 toc-link" data-title="JSONx Format">Web-Server Attacks</a>
+                  </li>
+                  <li>
+                    <a href="#miscellaneous" class="toc-h2 toc-link" data-title="JSONx Format">Miscellaneous</a>
+                  </li>
+                  <li>
+                    <a href="#unknown" class="toc-h2 toc-link" data-title="JSONx Format">Unknown</a>
+                  </li>
+                  <li>
+                    <a href="#smtp" class="toc-h2 toc-link" data-title="JSONx Format">SMTP</a>
+                  </li>
+                  <li>
+                    <a href="#error-handling-5" class="toc-h2 toc-link" data-title="JSONx Format">Error handling</a>
+                  </li>
+                  <li>
+                    <a href="#multiple-items-4" class="toc-h2 toc-link" data-title="JSONx Format">Multiple items</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#browser-access" class="toc-h1 toc-link" data-title="Browser access">Browser access</a>
+          </li>
+          <li>
             <a href="#dns-api" class="toc-h1 toc-link" data-title="DNS API">DNS API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#lookup-access" class="toc-h2 toc-link" data-title="DNS API">Lookup access</a>
+                  </li>
+                  <li>
+                    <a href="#domain-query" class="toc-h2 toc-link" data-title="DNS API">Domain query</a>
+                  </li>
+                  <li>
+                    <a href="#direct-access" class="toc-h2 toc-link" data-title="DNS API">Direct access</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#dns-response-codes" class="toc-h1 toc-link" data-title="DNS Response codes">DNS Response codes</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#127-0-0-x" class="toc-h2 toc-link" data-title="DNS Response codes">127.0.0.x</a>
+                    <a href="#txt-format" class="toc-h2 toc-link" data-title="DNS Response codes">TXT format</a>
                   </li>
                   <li>
-                    <a href="#127-0-1-x" class="toc-h2 toc-link" data-title="DNS Response codes">127.0.1.x</a>
-                  </li>
-                  <li>
-                    <a href="#127-1-0-x" class="toc-h2 toc-link" data-title="DNS Response codes">127.1.0.x</a>
-                  </li>
-                  <li>
-                    <a href="#127-8-0-x" class="toc-h2 toc-link" data-title="DNS Response codes">127.8.0.x</a>
+                    <a href="#a-aaaa-ptr-format" class="toc-h2 toc-link" data-title="DNS Response codes">A, AAAA, PTR format</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#zetascan-overview" class="toc-h1 toc-link" data-title="Zetascan Overview">Zetascan Overview</a>
+            <a href="#technical-overview" class="toc-h1 toc-link" data-title="Technical Overview">Technical Overview</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#data-amp-access-methods" class="toc-h2 toc-link" data-title="Zetascan Overview">Data &amp; Access Methods</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#score-calculation" class="toc-h1 toc-link" data-title="Score calculation">Score calculation</a>
-          </li>
-          <li>
-            <a href="#data-sources" class="toc-h1 toc-link" data-title="Data Sources">Data Sources</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#ip-addresses-sources" class="toc-h2 toc-link" data-title="Data Sources">IP Addresses sources</a>
+                    <a href="#data-amp-access-methods" class="toc-h2 toc-link" data-title="Technical Overview">Data &amp; Access Methods</a>
                   </li>
                   <li>
-                    <a href="#domains-sources" class="toc-h2 toc-link" data-title="Data Sources">Domains sources</a>
+                    <a href="#ip-addresses-sources" class="toc-h2 toc-link" data-title="Technical Overview">IP Addresses sources</a>
+                  </li>
+                  <li>
+                    <a href="#domains-sources" class="toc-h2 toc-link" data-title="Technical Overview">Domains sources</a>
                   </li>
               </ul>
           </li>
@@ -345,14 +398,28 @@
 
 <p>Because of the above, many developers asked if we could do something to reduce the complexity related to accessing and using threat data as part of their applications - ZQS is our solution. We are introducing a <em>more elegant API for developers</em>, with an affordable pricing model to match.</p>
 
-<p>To start, <a href="https://zetascan.com/signup/?lang=en">signup for a developer key</a> and begin to integrate ZQS into your web-apps and mobile applications. </p>
-<h1 id='authentication'>Authentication</h1>
-<p>Authentzation to ZQS can be provided via an API key, or specifying your servers IP address.</p>
-<h2 id='api-key'>API key</h2>
-<p>To query the ZQS an API can be specified as an argument. No API key? <a href="https://zetascan.com/signup/?lang=en'">Signup and receive</a> a key instantly. </p>
+<p>To start, <a href="https://zetascan.com/signup/?lang=en">signup for a developer key</a> and begin to integrate ZQS into your web-apps and mobile applications. A free-trial for 5,000 API queries is available for a 60-day period.</p>
+<h1 id='developer-library'>Developer library</h1>
+<p>To ease implementation Zetascan provides developer libraries in various languages. This provides a straightforward way to add ZQS support into your application.</p>
 
-<p>ZQS uses API keys to allow access to the service, and expects the API key to be included in all requests to the server if IP authentication is not provided.</p>
-<pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/?key<span class="o">=</span>YOURAPIKEY
+<ul>
+<li><a href="https://github.com/zetascan/go-zetascan">Go library</a>
+
+<ul>
+<li>HTTP, text, JSON and JSONx support</li>
+<li>Support for DNS lookups</li>
+<li>Example code provided</li>
+</ul></li>
+<li><a href="https://github.com/zetascan/php-zetascan">PHP library</a>
+
+<ul>
+<li>HTTP, text, JSON and JSONx support </li>
+</ul></li>
+<li>Python and NodeJS library, coming soon.</li>
+</ul>
+<h1 id='authentication'>Authentication</h1>
+<p>Authentication to ZQS can be provided via an API key, or specifying your servers static IP address.</p>
+<h3 id='api-key'>API key</h3><pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/?key<span class="o">=</span>YOURAPIKEY
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?</span>
 <span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
@@ -362,50 +429,32 @@
 
 <span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
 <span class="cp">?&gt;</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code>
-<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-<span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
-<span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.zetascan.com/?key=YOURAPIKEY'</span><span class="p">,</span>
-<span class="na">dataType</span><span class="p">:</span> <span class="s1">'JSON'</span><span class="p">,</span>
-<span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-<span class="p">},</span>
-
-<span class="na">error</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
-<span class="p">}</span>
-
-<span class="p">});</span>
 </code></pre>
 <blockquote>
 <p>Make sure to replace <code>YOURAPIKEY</code> with your API key.</p>
 </blockquote>
 
-<aside class="notice">
-You must replace <code>YOURAPIKEY</code> with your personal API key.
-</aside>
+<p>To query the ZQS an API can be specified as an argument. No API key? <a href="https://zetascan.com/signup/?lang=en">Signup and receive</a> a key instantly. </p>
+
+<p>ZQS uses API keys to allow access to the service, and expects the API key to be included in all requests, if IP authentication is not provided.</p>
 
 <aside class="notice">
-Zetascan only accepts the API key using SSL/https. If using the http interface, IP authentication must be used.
+Zetascan only accepts the API key using SSL/https. If using the http interface without SSL, IP authentication must be used.
 </aside>
-<h2 id='ip-authentication'>IP authentication</h2>
-<p>Alternatively, authentication to ZQS can be allowed by providing your servers IP address via the Zetascan dashboard.</p>
-
-<aside class="notice">
-To query records via the Zetascan DNS service, IP authentication must be used.
-</aside>
+<h3 id='ip-authentication'>IP authentication</h3>
+<p>Alternatively, authentication to ZQS can be allowed by providing your servers IP address via the <a href="https://zetascan.com/dashboard/?lang=en">Zetascan dashboard</a>.</p>
 <h1 id='api-overview'>API Overview</h1><h2 id='query-formats'>Query formats</h2>
 <blockquote>
 <p>Query end-points include 4 formatting options:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>https://api.zetascan.com/v1/check/http/
-</code></pre><pre class="highlight plaintext"><code>https://api.zetascan.com/v1/check/text/
-</code></pre><pre class="highlight plaintext"><code>https://api.zetascan.com/v1/check/json/
-</code></pre><pre class="highlight plaintext"><code>https://api.zetascan.com/v1/check/jsonx/
+<pre class="highlight plaintext"><code>https://api.zetascan.com/v2/check/http/
+</code></pre><pre class="highlight plaintext"><code>https://api.zetascan.com/v2/check/text/
+</code></pre><pre class="highlight plaintext"><code>https://api.zetascan.com/v2/check/json/
+</code></pre><pre class="highlight plaintext"><code>https://api.zetascan.com/v2/check/jsonx/
 </code></pre>
-<p>You can issue requests to our endpoints from virtually any operating system or programming language. REST queries are extremely fast and provide the reachest set of information about an item. For example, the Spamhaus&#39; CBL data is available only via REST JSONX query.</p>
+<p>You can issue requests to our endpoints from virtually any operating system or programming language. REST queries are extremely fast and provide the richest set of information about an item.</p>
 
-<p>Each client has unique access key, generated by the system. You need to provide this key, if querying from an unregistered IP address. Requests from unregistered IP address are rejected, if not performed over HTTPS (secure).</p>
+<p>Each client has unique access key, generated by the system. You need to provide this key, if querying from an unregistered static IP address.</p>
 
 <p>There are four types of REST queries:</p>
 
@@ -413,12 +462,26 @@ To query records via the Zetascan DNS service, IP authentication must be used.
 <li>HTTP</li>
 <li>Text</li>
 <li>JSON</li>
-<li>JSONX.</li>
+<li>JSONx</li>
 </ul>
 
 <p>The type of desired query is passed in the HTTP request.</p>
-<h2 id='ip-addresses'>IP Addresses</h2>
-<p>We provide four IPv4 and four IPv6 addresses, which will always return the same answers. Use those for testing and development:</p>
+<h2 id='score-calculation'>Score calculation</h2>
+<p>ZQS provides two scoring mechanisms to grade an IP or domain-name for abuse, anti-spam measures, and trustworthiness. </p>
+
+<p>The minimum score is <code>-0.1</code>, meaning an item was matched on a known trusted white-list.</p>
+
+<p>If a score is <code>0</code>, the item is not found within Zetascan and can be considered neutral.</p>
+
+<p>A score between <code>0 - 1.0</code> is a rating on the specified domain or IP address. Scores above <code>0.35</code> should be considered as spam or fraudulent.</p>
+
+<p>Reference the <a href="#data-sources">data sources</a> chapter for more information on feeds used to calculate the scores.</p>
+<h3 id='webscore'>webscore</h3>
+<p>Webscore is returned by all query methods, which is used to determine a score for integrating your web-application, mobile-app or protecting your application infrastructure.</p>
+<h3 id='score'>score</h3>
+<p>Score is also returned by all query methods, and it used to determine a specified IP or domain-name for anti-spam abuse via SMTP, useful for MTA and spam-filters. This score takes into consideration email abuse, and uses a different algorithm from the webscore key.</p>
+<h2 id='test-cases'>Test Cases</h2><h3 id='ip-addresses'>IP Addresses</h3>
+<p>We provide four IPv4 and four IPv6 addresses, which will always return the same answers. Use these for testing and development:</p>
 
 <ul>
 <li><code>127.9.9.1</code> - returning as if found in SBL, XBL &amp; CBL</li>
@@ -427,136 +490,350 @@ To query records via the Zetascan DNS service, IP authentication must be used.
 <li><code>127.9.9.4</code> - not found (good IP), also contains White List data</li>
 <li><code>::1, ::2, ::3, ::4</code> - returning as above for IPv6.</li>
 </ul>
-<h2 id='domains'>Domains</h2>
+<h3 id='domains'>Domains</h3>
 <p>We provide two testing domains:</p>
 
 <ul>
-<li><p><code>baddomain.org</code> - returns as if found in all domain DBs: DBL, and all URIBL</p></li>
+<li><p><code>baddomain.org</code> - returns as if found in all domain DB&#39;s: DBL, and all URIBL</p></li>
 <li><p><code>okdomain.org</code> - returns as if not found in any DB.</p></li>
 </ul>
-<h1 id='http-format'>HTTP Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/v1/check/http/baddomain.org?key<span class="o">=</span>YOURAPIKEY
+<h2 id='error-handling'>Error handling</h2>
+<p>When querying ZQS, the following error-codes will be returned if the query or authentication failed. Each query format (Text, HTTP, JSON/JSONx) will embed any error messages in the returned data. Examples on handling errors will be provided for each query format example.</p>
+<h3 id='error-codes'>Error codes</h3>
+<p><code>1</code>     Wrong API key</p>
+
+<p><code>2</code>     API key sent over HTTP (HTTPS required)</p>
+
+<p><code>3</code>     REST query with POST Method (GET Required)</p>
+
+<p><code>4</code>     Missing IP/Domain argument</p>
+
+<p><code>5</code>     Query limit exceeded (for developers)</p>
+
+<p><code>6</code>     Failed to parse query item(s)</p>
+
+<p><code>7</code>     Authentication failure (wrong key, disabled, IP address not allowed, etc.)</p>
+<h1 id='http-format'>HTTP Format</h1><pre class="highlight shell tab-shell"><code>curl -i https://api.zetascan.com/v2/check/http/baddomain.org?key<span class="o">=</span>YOURAPIKEY
+
+HTTP/1.1 200 OK
+Content-Type: text/plain; <span class="nv">charset</span><span class="o">=</span>utf-8
+x-zetascan-items: baddomain.org
+x-zetascan-status: success
+x-zetascan-score: 1
+x-zetascan-sources: DBL;RED;GREY;GOLD;BLACK
+x-zetascan-wl: null
+x-zetascan-time: 1500970900
+x-zetascan-webscore: 0.6
+x-zetascan-fromParent: null
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?</span>
 <span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.zetascan.com/v1/check/http/baddomain.org?key=YOURAPIKEY'</span><span class="p">);</span>
-
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.zetascan.com/v2/check/http/baddomain.org?key=YOURAPIKEY'</span><span class="p">);</span>
 <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
+<span class="c1">// Request headers only
+</span><span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_HEADER</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span> 
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_NOBODY</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
 <span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
-<span class="cp">?&gt;</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-<span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
-<span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.zetascan.com/v1/check/http/baddomain.org?key=YOURAPIKEY'</span><span class="p">,</span>
-<span class="na">dataType</span><span class="p">:</span> <span class="s1">'text'</span><span class="p">,</span>
-<span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-<span class="p">},</span>
 
-<span class="na">error</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+<span class="c1">// Lookup the HTTP status code
+</span><span class="nv">$status</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLINFO_HTTP_CODE</span><span class="p">);</span>
+
+<span class="c1">// Check status codes for a match
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$status</span> <span class="o">==</span> <span class="mi">204</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"No match in Zetascan blacklist or white-list"</span><span class="p">;</span>
+
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nv">$status</span> <span class="o">==</span> <span class="mi">403</span><span class="p">)</span>   <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"Request forbidden, check API-key or IP registered"</span><span class="p">;</span>
+
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nv">$status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>    
+    <span class="nv">$data</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span><span class="nv">$response</span><span class="p">);</span>
+
+    <span class="nv">$headers</span><span class="p">[</span><span class="s1">'status'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$data</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+
+    <span class="c1">// Take the HTTP response out, first element
+</span>    <span class="nb">array_shift</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+
+    <span class="c1">// Build an array for our headers
+</span>    <span class="k">foreach</span><span class="p">(</span><span class="nv">$data</span> <span class="k">as</span> <span class="nv">$part</span><span class="p">){</span>
+        <span class="nv">$middle</span><span class="o">=</span><span class="nb">explode</span><span class="p">(</span><span class="s2">":"</span><span class="p">,</span><span class="nv">$part</span><span class="p">);</span>
+        <span class="nv">$headers</span><span class="p">[</span><span class="nb">trim</span><span class="p">(</span><span class="nv">$middle</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$middle</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Display the score if blacklisted, otherwise if a whitelist
+</span>    <span class="k">if</span><span class="p">(</span> <span class="nv">$headers</span><span class="p">[</span><span class="nx">x</span><span class="o">-</span><span class="nx">zetascan</span><span class="o">-</span><span class="nx">score</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="nv">$headers</span><span class="p">[</span><span class="nx">x</span><span class="o">-</span><span class="nx">zetascan</span><span class="o">-</span><span class="nx">webscore</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"Item blacklisted, score "</span> <span class="o">.</span> <span class="nv">$headers</span><span class="p">[</span><span class="nx">x</span><span class="o">-</span><span class="nx">zetascan</span><span class="o">-</span><span class="nx">score</span><span class="p">]</span> <span class="o">.</span> <span class="s2">" webscore "</span> <span class="o">.</span> <span class="nv">$headers</span><span class="p">[</span><span class="nx">x</span><span class="o">-</span><span class="nx">zetascan</span><span class="o">-</span><span class="nx">webscore</span><span class="p">];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"Item white-listed"</span><span class="p">;</span>
+    <span class="p">}</span>
 <span class="p">}</span>
-
-<span class="p">});</span>
-</code></pre><pre class="highlight plaintext"><code>HTTP 200 (OK).
-
-If the item is not present in any black list, then the answer will be 204 (No Content).
+<span class="cp">?&gt;</span>
 </code></pre>
 <p>HTTP returns very simple response - found or not, via HTTP response code. If found, the response will be 200 (OK).</p>
 
-<p>If the item is not present in any black list, then the answer will be 204 (No Content).</p>
+<p>If the item is not present in any black-list/white-list, then the answer will be 204 (No Content).</p>
 
-<p>Additional information about the item is found in the response headers. Check the Developers page for more information.</p>
+<p>Additional information about the item is found in the response headers. </p>
+<h3 id='response-headers'>Response headers</h3>
+<p>If the query matches, the following HTTP headers will be supplied for additional information.</p>
 
-<p>HTTP example - replace &#39;baddomain.org&#39; with your query - IP or domain:</p>
-<h1 id='text-format'>Text Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/v1/check/text/baddomain.org?key<span class="o">=</span>YOURAPIKEY
+<blockquote>
+<p>Example HTTP header response:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>x-zetascan-items:querydomain.org
+x-zetascan-score:1
+x-zetascan-webscore:0.6
+x-zetascan-sources:DBL;RED;GREY;GOLD;BLACK
+x-zetascan-time:1500970900
+x-zetascan-wl:null
+x-zetascan-status:success
+</code></pre>
+<table><thead>
+<tr>
+<th>HTTP Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>x-zetascan-items</td>
+<td>The argument used to query ZQS</td>
+</tr>
+<tr>
+<td>x-zetascan-score</td>
+<td>The score returned for the query, used for MTA and SMTP anti-spam measures</td>
+</tr>
+<tr>
+<td>x-zetascan-webscore</td>
+<td>The score returned for the query, used for Web and application anti-abuse. Note the differences between web-score and score, see the score calculation for more information.</td>
+</tr>
+<tr>
+<td>x-zetascan-sources</td>
+<td>A list of sources the query is obtained from, delimitated by a semicolon. See the <a href="#domains-sources">source references</a> for more information.</td>
+</tr>
+<tr>
+<td>x-zetascan-time</td>
+<td>EPOCH time of response for the query</td>
+</tr>
+<tr>
+<td>x-zetascan-wl</td>
+<td>A list of sources matched if the query is listed in a white-list.</td>
+</tr>
+<tr>
+<td>x-zetascan-status</td>
+<td>Returns &quot;success&quot;, otherwise &quot;forbidden&quot; or &quot;error&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='error-handling-2'>Error handling</h3>
+<blockquote>
+<p>Example HTTP error response:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>x-zetascan-errorCode:7
+x-zetascan-errorMessage:Wrong API Key
+x-zetascan-status:forbidden
+</code></pre>
+<table><thead>
+<tr>
+<th>HTTP Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>x-zetascan-errorCode</td>
+<td>The returned error-code. If present, the query has failed.</td>
+</tr>
+<tr>
+<td>x-zetascan-errorMessage</td>
+<td>A detailed explanation of the failure</td>
+</tr>
+<tr>
+<td>x-zetascan-status</td>
+<td>Returns &quot;forbidden&quot; if authentication denied, or &quot;error&quot; for all other error codes.</td>
+</tr>
+</tbody></table>
+<h2 id='multiple-items'>Multiple items</h2>
+<blockquote>
+<p>http://api.zetascan.com/v2/check/http/127.9.9.1,127.9.9.2</p>
+</blockquote>
+<pre class="highlight plaintext"><code>x-zetascan-items: 127.9.9.1,127.9.9.2
+x-zetascan-status: success,success
+x-zetascan-score: 0.95,0.2
+x-zetascan-sources: XBL;SBL,PBL
+x-zetascan-wl: null,null
+x-zetascan-time: 1500970900,1500970900
+x-zetascan-webscore: 0.6,null
+x-zetascan-fromParent: null,null
+</code></pre>
+<p>You can send multiple items in a single request by comma delimitating each IP or domain. This will speed up the overall time for answering your query.</p>
+
+<p>The HTTP headers will contain a response for each query, comma delimitated in sequence from the query specified.</p>
+<h1 id='text-format'>Text Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/v2/check/text/baddomain.org?key<span class="o">=</span>YOURAPIKEY
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?</span>
-<span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
+<span class="c1">// Text method
+</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.zetascan.com/v1/check/text/baddomain.org?key=YOURAPIKEY'</span><span class="p">);</span>
-
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.zetascan.com/v2/check/text/baddomain.org?key=YOURAPIKEY'</span><span class="p">);</span>
 <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
 <span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
-<span class="cp">?&gt;</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-<span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
-<span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.zetascan.com/v1/check/text/baddomain.org?key=YOURAPIKEY'</span><span class="p">,</span>
-<span class="na">dataType</span><span class="p">:</span> <span class="s1">'text'</span><span class="p">,</span>
-<span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-<span class="p">},</span>
 
-<span class="na">error</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+<span class="c1">// Lookup the HTTP status code
+</span><span class="nv">$status</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLINFO_HTTP_CODE</span><span class="p">);</span>
+
+<span class="c1">// Check status codes for a match
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$status</span> <span class="o">==</span> <span class="mi">204</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"No match in Zetascan blacklist or white-list"</span><span class="p">;</span>
+
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nv">$status</span> <span class="o">==</span> <span class="mi">403</span><span class="p">)</span>   <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"Request forbidden, check API-key or IP registered"</span><span class="p">;</span>
+
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nv">$status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="c1">// Read the body and split from the specified API formatting
+</span>        <span class="nv">$head</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s2">":"</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="nv">$head</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"error"</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="k">echo</span> <span class="s2">"An error occurred "</span> <span class="o">.</span> <span class="nv">$head</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+            <span class="nv">$str</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span> <span class="nv">$head</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+
+            <span class="c1">// $str will contain each field as specified below
+</span>            <span class="k">echo</span> <span class="s2">"Blacklist hit =&gt; "</span> <span class="o">.</span> <span class="nv">$str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+            <span class="k">echo</span> <span class="s2">"Whitelist hit =&gt; "</span> <span class="o">.</span> <span class="nv">$str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+            <span class="k">echo</span> <span class="s2">"Whitelist data =&gt; "</span> <span class="o">.</span> <span class="nv">$str</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+            <span class="k">echo</span> <span class="s2">"Score =&gt; "</span> <span class="o">.</span> <span class="nv">$str</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+            <span class="k">echo</span> <span class="s2">"WebScore =&gt; "</span> <span class="o">.</span> <span class="nv">$str</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+
+            <span class="k">echo</span> <span class="s2">"Sources =&gt; "</span><span class="p">;</span>
+
+            <span class="c1">// List all sources, comma separated
+</span>            <span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$str</span><span class="p">);</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">echo</span> <span class="nv">$str</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span> <span class="o">.</span> <span class="s2">","</span><span class="p">;</span>
+            <span class="p">}</span>
+
+        <span class="p">}</span>
+
 <span class="p">}</span>
-
-<span class="p">});</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>The above example returns text in the format:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>127.9.9.4:false,true,med;zetascan.com;99999,-0.1 127.9.9.1:true,false,,0.95,xbl,sbl
+<pre class="highlight plaintext"><code>baddomain.org:true,false,,1,0.6,dbl,red,gold,grey,black
 </code></pre>
 <p>TEXT returns space separated blocks of information about the lists where the item is found.</p>
 
 <p>Text example - replace &#39;baddomain.com&#39; with your query - IP or domain:</p>
-
+<h3 id='format'>Format</h3>
 <p>Items are separated by space. The format for each item is:</p>
 
-<p><code>item:bool,bool,wldata,score,source</code></p>
+<p><code>item:bool,bool,wldata,score,webscore,source</code></p>
 
 <p>Where:</p>
 
 <ul>
-<li><p>the first bool is true, if found in any black list,</p></li>
-<li><p>the second bool is true, if found in any white list,</p></li>
-<li><p>wldata contains the data from the white list, and</p></li>
-<li><p>score is followed by the list of sources where the item was found.</p></li>
+<li><p>the first bool is true, if found in any black list.</p></li>
+<li><p>the second bool is true, if found in any white list.</p></li>
+<li><p>wldata contains the data from the white list (if present)</p></li>
+<li><p>score, returns the score used for MTA/anti-spam abuse.</p></li>
+<li><p>webscore, the returned score for web/application abuse.</p></li>
+<li><p>sources, a comma separated list of which lists the query was matched on.</p></li>
 </ul>
-<h1 id='json-format'>JSON Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/v1/check/json/baddomain.org?key<span class="o">=</span>yourkeygoeshere
+<h3 id='error-handling-3'>Error handling</h3>
+<p>If an error occurs using the text query, the data returned will contain the an error prefix, followed by an error message, and the specific error-code.</p>
+
+<p>Example authentication error:</p>
+
+<p><code>error:Wrong API Key;7</code></p>
+
+<p>Malformed query:</p>
+
+<p><code>error:Failed to parse query&#39;s item;3</code></p>
+<h2 id='multiple-items-2'>Multiple items</h2>
+<blockquote>
+<p>http://api.zetascan.com/v2/check/text/127.9.9.1,127.9.9.2</p>
+</blockquote>
+<pre class="highlight plaintext"><code>127.9.9.1:true,false,,0.95,0.6,xbl,sbl 127.9.9.2:true,false,,0.2,0,pbl
+</code></pre>
+<p>You can send multiple items in a single request by comma delimitating each IP or domain. This will speed up the overall time for answering your query.</p>
+
+<p>The text format, will contain a response for each query, <code>space</code> delimitated.</p>
+<h1 id='json-format'>JSON Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/v2/check/json/baddomain.org?key<span class="o">=</span> YOURAPIKEY
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?</span>
-<span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
+<span class="c1">// PHP example with multi-query support, error checking, and JSON data presented
+</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.zetascan.com/v1/check/json/baddomain.org?key=YOURAPIKEY'</span><span class="p">);</span>
-
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.zetascan.com/v2/check/json/baddomain.org,okdomain.org,badquery?key=YOURAPIKEY'</span><span class="p">);</span>
 <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
 <span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
 
-<span class="k">echo</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+<span class="c1">// Lookup the HTTP status code
+</span><span class="nv">$status</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLINFO_HTTP_CODE</span><span class="p">);</span>
 
-<span class="cp">?&gt;</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-<span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
-<span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.zetascan.com/v1/check/json/baddomain.org?key=YOURAPIKEY'</span><span class="p">,</span>
-<span class="na">dataType</span><span class="p">:</span> <span class="s1">'JSON'</span><span class="p">,</span>
-<span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-<span class="p">},</span>
+<span class="c1">// Check status codes for a match
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$status</span> <span class="o">==</span> <span class="mi">403</span><span class="p">)</span>   <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"Request forbidden, check API-key or IP registered"</span><span class="p">;</span>
 
-<span class="na">error</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nv">$status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+    <span class="c1">// Check for any error messages, auth failure, API-key incorrect, etc.
+</span>    <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$json</span><span class="p">[</span><span class="s2">"error"</span><span class="p">][</span><span class="s2">"message"</span><span class="p">]))</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"An error occurred "</span> <span class="o">.</span> <span class="nv">$json</span><span class="p">[</span><span class="s2">"error"</span><span class="p">][</span><span class="s2">"message"</span><span class="p">];</span>
+    <span class="p">}</span> 
+
+    <span class="c1">// Loop through each response ( multiple queries can be delimitated by a comma)
+</span>    <span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$json</span><span class="p">[</span><span class="s2">"results"</span><span class="p">]);</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">echo</span> <span class="s2">"Query =&gt; "</span> <span class="o">.</span> <span class="nv">$json</span><span class="p">[</span><span class="s2">"results"</span><span class="p">][</span><span class="nv">$i</span><span class="p">][</span><span class="s2">"item"</span><span class="p">]</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+
+        <span class="c1">// Check for an error message
+</span>        <span class="k">if</span><span class="p">(</span><span class="nv">$json</span><span class="p">[</span><span class="s2">"results"</span><span class="p">][</span><span class="nv">$i</span><span class="p">][</span><span class="s2">"error"</span><span class="p">])</span> <span class="p">{</span>
+            <span class="k">echo</span> <span class="s2">"An error occurred "</span> <span class="o">.</span> <span class="nv">$json</span><span class="p">[</span><span class="s2">"results"</span><span class="p">][</span><span class="nv">$i</span><span class="p">][</span><span class="s2">"error"</span><span class="p">][</span><span class="s2">"message"</span><span class="p">]</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Display the results
+</span>        <span class="nb">print_r</span><span class="p">(</span><span class="nv">$json</span><span class="p">[</span><span class="s2">"results"</span><span class="p">][</span><span class="nv">$i</span><span class="p">]);</span>
+
+    <span class="p">}</span>
+
 <span class="p">}</span>
-
-<span class="p">});</span>
-</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="s2">"item"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123.123.123.123"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"found"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fromSubnet"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"shPBL"</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"wl"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wldata"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-  </span><span class="p">}],</span><span class="w">
-  </span><span class="s2">"executionTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w"> 
+<span class="cp">?&gt;</span>
+</code></pre>
+<blockquote>
+<p>Example JSON return string:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"results"</span><span class="p">:[{</span><span class="w">
+        </span><span class="s2">"item"</span><span class="p">:</span><span class="s2">"baddomain.org"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"found"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"score"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"webscore"</span><span class="p">:</span><span class="mf">0.6</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fromSubnet"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sources"</span><span class="p">:</span><span class="w">
+            </span><span class="p">[</span><span class="s2">"shDBL"</span><span class="p">,</span><span class="s2">"ubGrey"</span><span class="p">,</span><span class="s2">"ubGold"</span><span class="p">,</span><span class="s2">"ubRed"</span><span class="p">,</span><span class="s2">"ubBlack"</span><span class="p">],</span><span class="w">
+        </span><span class="s2">"wl"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"wldata"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lastModified"</span><span class="p">:</span><span class="mi">1500972200</span><span class="w">
+        </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"executionTime"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>JSON will return a JSON document with details about black lists, whether the item was found in a subnet, etc. See format explanation below. JSON example - replace &#39;baddomain.org&#39; with your query - IP or domain:</p>
+<p>The query will return a JSON response including if the item is found on a black-list/white-list, score, sources, etc. Refer to the table below for each field explanation.</p>
 
-<p>JSON response:</p>
-
+<aside class="notice">
+The `found` key will be true, if the item is hit in a black-list or white-list. Test the `wl` condition if the item is contained within a white-list. If the score or webscore value is > 0 and `wl` false, the item is contained in a black-list.
+</aside>
+<h3 id='json-response'>JSON response</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -565,15 +842,19 @@ If the item is not present in any black list, then the answer will be 204 (No Co
 </thead><tbody>
 <tr>
 <td>Item</td>
-<td>IP address</td>
+<td>Query value (IP or domain)</td>
 </tr>
 <tr>
 <td>Found</td>
-<td>True/False if found in ZQS</td>
+<td>True/False if matched in a white-list/black-list.</td>
 </tr>
 <tr>
 <td>Score</td>
-<td>Score between -0.1 to 1.0. See <a href="#score-calculation">score information</a></td>
+<td>Score between -0.1 to 1.0 for MTA/Anti-spam abuse. See <a href="#score-calculation">score information</a></td>
+</tr>
+<tr>
+<td>WebScore</td>
+<td>Scorebetween 0.1 to 1.0 for Web/application abuse.</td>
 </tr>
 <tr>
 <td>FromSubnet</td>
@@ -581,15 +862,15 @@ If the item is not present in any black list, then the answer will be 204 (No Co
 </tr>
 <tr>
 <td>Sources</td>
-<td>Lists matched from ZQS. <a href="#data-amp-access-methods">See list</a> information.</td>
+<td>Black-Lists matched from ZQS. <a href="#data-amp-access-methods">See list</a> information.</td>
 </tr>
 <tr>
 <td>Wl</td>
-<td>To be specified</td>
+<td>If the item matches a white-list.</td>
 </tr>
 <tr>
 <td>Wldata</td>
-<td>To be specified</td>
+<td>White-Lists matched from ZQS. <a href="#data-amp-access-methods">See list</a> information.</td>
 </tr>
 <tr>
 <td>ExecutionTime</td>
@@ -600,40 +881,83 @@ If the item is not present in any black list, then the answer will be 204 (No Co
 <td>Success or failure</td>
 </tr>
 </tbody></table>
-<h1 id='jsonx-format'>JSONX Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/v1/check/jsonx/baddomain.org?key<span class="o">=</span>yourkeygoeshere
+<h3 id='error-handling-4'>Error handling</h3>
+<blockquote>
+<p>Example authentication error:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"error"</span><span class="p">:{</span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Wrong API Key"</span><span class="p">,</span><span class="s2">"errorCode"</span><span class="p">:</span><span class="mi">7</span><span class="p">}}</span><span class="w"> 
+</span></code></pre>
+<blockquote>
+<p>Malformed query:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"results"</span><span class="p">:</span><span class="w">
+    </span><span class="p">[{</span><span class="s2">"item"</span><span class="p">:</span><span class="s2">"malformedquery"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"error"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Failed to parse query's item"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"errorCode"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>If an error occurred, the JSON response will return an errorCode, message and status within the JSON object.</p>
+
+<p>It is highly recommended to test against the specified error-codes during implementation. Reference the <a href="#error-handling">error handling</a> section for more information.</p>
+<h2 id='multiple-items-3'>Multiple items</h2>
+<blockquote>
+<p>http://api.zetascan.com/v2/check/json/127.9.9.1,127.9.9.2</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"results"</span><span class="p">:</span><span class="w">
+    </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"item"</span><span class="p">:</span><span class="s2">"127.9.9.1"</span><span class="p">,</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="p">},{</span><span class="w">
+    </span><span class="s2">"item"</span><span class="p">:</span><span class="s2">"127.9.9.2"</span><span class="p">,</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+</span><span class="s2">"executionTime"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>You can send multiple items in a single request by comma delimitating each IP or domain. This will speed up the overall time for answering your query.</p>
+
+<p>The JSON format, will contain a response for each query within the <code>results</code> array</p>
+<h1 id='jsonx-format'>JSONx Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/v2/check/jsonx/baddomain.org?key<span class="o">=</span>yourkeygoeshere
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?</span>
 <span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.zetascan.com/v1/check/jsonx/baddomain.org?key=YOURAPIKEY'</span><span class="p">);</span>
-
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.zetascan.com/v2/check/jsonx/127.9.9.1?key=YOURAPIKEY'</span><span class="p">);</span>
 <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
 <span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
 
-<span class="k">echo</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+<span class="c1">// Lookup the HTTP status code
+</span><span class="nv">$status</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLINFO_HTTP_CODE</span><span class="p">);</span>
 
-<span class="cp">?&gt;</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-<span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
-<span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.zetascan.com/v1/check/jsonx/baddomain.org?key=YOURAPIKEY'</span><span class="p">,</span>
-<span class="na">dataType</span><span class="p">:</span> <span class="s1">'JSON'</span><span class="p">,</span>
-<span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-<span class="p">},</span>
+<span class="c1">// Check status codes for a match
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$status</span> <span class="o">==</span> <span class="mi">403</span><span class="p">)</span>   <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"Request forbidden, check API-key or IP registered"</span><span class="p">;</span>
 
-<span class="na">error</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nv">$status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+    <span class="c1">// Display the array
+</span>    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$json</span><span class="p">);</span>
+
+    <span class="c1">// Display extended information
+</span>    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$json</span><span class="p">[</span><span class="s2">"results"</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">"extended"</span><span class="p">]);</span>
+
 <span class="p">}</span>
-
-<span class="p">});</span>
+<span class="cp">?&gt;</span>
 </code></pre>
-<p>JSONX will return also a JSON document, extended with additional information about the last known activity of an fraudulent IP address. There are no jsonx queries for domains. Jsonx example - replace &#39;baddomain.com&#39; with your query - IP or domain:</p>
+<p>JSONx will return also a JSON document, extended with additional information about the last known activity of an fraudulent IP address. The JSONx format only supports <code>IP addresses</code> and not domain queries.</p>
 
 <aside class="success">
-Use JSONX if you require extended information regarding the queried host.
+Use JSONx if you require extended information regarding the queried host.
 </aside>
-<h3 id='jsonx-response'>JSONX response:</h3>
-<p>It includes additional information about an IP address with fraudulent activity. This information is found in the &#39;extended&#39; and &#39;emailsdaily&#39; fields, e.g.:</p>
+<h3 id='jsonx-response'>JSONx response</h3>
+<p>Responses include additional information about an IP address with fraudulent activity. This information is found in the &#39;extended&#39; and &#39;emailsdaily&#39; fields, e.g.:</p>
 <h3 id='query-parameters'>Query Parameters</h3><pre class="highlight json tab-json"><code><span class="s2">"extended"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"ASNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23969"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"route"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.200.0/24"</span><span class="p">,</span><span class="w">
@@ -654,6 +978,10 @@ Use JSONX if you require extended information regarding the queried host.
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<aside class="notice">
+The JSONx format will always return an `extended` element, regardless if additional information is available.
+</aside>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -691,7 +1019,18 @@ Use JSONX if you require extended information regarding the queried host.
 </tbody></table>
 
 <p>For SMTP use, the <code>reason</code> JSON response will extend information based on the EHLO/SMTP reputation of the queried IP. Results include:</p>
-<h2 id='bot'>Bot</h2>
+
+<ul>
+<li>Bot</li>
+<li>Sinkhole</li>
+<li>Web-Server Compromises</li>
+<li>Web-Server Attacks</li>
+<li>Miscellaneous</li>
+<li>Unknown</li>
+</ul>
+
+<p>Details for each response is provided below:</p>
+<h3 id='bot'>Bot</h3>
 <p>JSONX provides extended information to protect your web-site or mobile application, especially for user signup forms, login and integrations to your application.</p>
 
 <p>JSONX returns a <code>BOT</code> class, which represents one of the following 5 types:</p>
@@ -720,7 +1059,7 @@ Use JSONX if you require extended information regarding the queried host.
 <td>Source Port</td>
 </tr>
 </tbody></table>
-<h3 id='web-server-compromises'>Web Server Compromises</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"class"</span><span class="p">:</span><span class="s2">"BOT"</span><span class="p">,</span><span class="w"> </span><span class="s2">"rule"</span><span class="p">:</span><span class="s2">"20062"</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"spamlink"</span><span class="p">,</span><span class="w"> </span><span class="s2">"domain"</span><span class="p">:</span><span class="s2">"www.thefashionic.com"</span><span class="p">,</span><span class="w"> </span><span class="s2">"source"</span><span class="p">:</span><span class="s2">"1.53.132.24"</span><span class="p">,</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"gamut"</span><span class="p">,</span><span class="w"> </span><span class="s2">"link"</span><span class="p">:</span><span class="s2">"https://www.thefashionic.com/wp-content/themes/thevoux-wp/f3ebf56b6f.html"</span><span class="p">,</span><span class="w"> </span><span class="s2">"redirect"</span><span class="p">:</span><span class="s2">"https://targetsale.name"</span><span class="p">}</span><span class="w">
+<h3 id='web-server-compromises'>Web-Server Compromises</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"class"</span><span class="p">:</span><span class="s2">"BOT"</span><span class="p">,</span><span class="w"> </span><span class="s2">"rule"</span><span class="p">:</span><span class="s2">"20062"</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"spamlink"</span><span class="p">,</span><span class="w"> </span><span class="s2">"domain"</span><span class="p">:</span><span class="s2">"www.thefashionic.com"</span><span class="p">,</span><span class="w"> </span><span class="s2">"source"</span><span class="p">:</span><span class="s2">"1.53.132.24"</span><span class="p">,</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"gamut"</span><span class="p">,</span><span class="w"> </span><span class="s2">"link"</span><span class="p">:</span><span class="s2">"https://www.thefashionic.com/wp-content/themes/thevoux-wp/f3ebf56b6f.html"</span><span class="p">,</span><span class="w"> </span><span class="s2">"redirect"</span><span class="p">:</span><span class="s2">"https://targetsale.name"</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <table><thead>
 <tr>
@@ -753,7 +1092,7 @@ Use JSONX if you require extended information regarding the queried host.
 <td>Real link destination</td>
 </tr>
 </tbody></table>
-<h3 id='web-server-attacks'>Web Server Attacks</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"class"</span><span class="p">:</span><span class="s2">"BOT"</span><span class="p">,</span><span class="w"> </span><span class="s2">"rule"</span><span class="p">:</span><span class="s2">"9051"</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"web server attack"</span><span class="p">,</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"commentspammer"</span><span class="p">}</span><span class="w">
+<h3 id='web-server-attacks'>Web-Server Attacks</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"class"</span><span class="p">:</span><span class="s2">"BOT"</span><span class="p">,</span><span class="w"> </span><span class="s2">"rule"</span><span class="p">:</span><span class="s2">"9051"</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"web server attack"</span><span class="p">,</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"commentspammer"</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <table><thead>
 <tr>
@@ -847,7 +1186,7 @@ Use JSONX if you require extended information regarding the queried host.
 </tr>
 </tbody></table>
 <h2 id='smtp'>SMTP</h2>
-<p>If using ZQS for MTA/SMTP security, JSONX provides extended information that can assist with spam detection and email security for end-user mailboxes.</p>
+<p>If using ZQS for MTA/SMTP security, JSONx provides extended information that can assist with spam detection and email security for end-user mailboxes.</p>
 <h3 id='loc'>LOC</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"class"</span><span class="p">:</span><span class="s2">"LOC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"helos as destination server"</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <table><thead>
@@ -1019,65 +1358,119 @@ Use JSONX if you require extended information regarding the queried host.
 <td>Special category for development purposes.</td>
 </tr>
 </tbody></table>
-<h2 id='multiple-items'>Multiple items</h2><pre class="highlight plaintext"><code>http://api.zetascan.com/v1/check/jsonx/127.9.9.1,baddomain.org,127.9.9.4,okdomain.org,::1
-</code></pre>
-<p>You can send multiple items in a single request. This will speed up the overall time for answering your query. Whenever possible, please use multiple items in a single query</p>
-<h2 id='browser-access'>Browser access</h2>
+<h2 id='error-handling-5'>Error handling</h2>
+<p>Error handling for the JSONx query type is the same as the <a href="#error-handling-4">JSON error handling</a> section. </p>
+<h2 id='multiple-items-4'>Multiple items</h2>
+<p>JSONx support multiple items for a single query, and matches the <a href="#multiple-items-3">JSON multiple-item</a> format.</p>
+<h1 id='browser-access'>Browser access</h1>
+<p>Alternatively, you can test the ZQS using your web-browser. This should be used for test purposes only.</p>
+
 <ul>
 <li><p>Point your browser to <a href="https://zetascan.com/query">https://zetascan.com/query</a></p></li>
 <li><p>Enter one or more IP addresses or domain names;</p></li>
 </ul>
 
-<p>Click Check.</p>
-
 <p>The service will return list of results with details on where the items were found, query time, and calculated score</p>
 
-<p>Note: a 5 second delay is applied to all anonymous user queries. Please register to remove this delay.</p>
+<p>Note: a 5 second delay is applied to all anonymous user queries. Please register for an API key to remove this delay.</p>
 <h1 id='dns-api'>DNS API</h1>
-<p>We are providing an rbldns-like server that combines the information from all the sources we aggregate.</p>
+<p>ZQS provides an <code>rbldns</code> service that combines the information from all the sources we aggregate.</p>
 
-<p>You should direct your DNS or anti-spam software to query <code>api.zetascan.com</code></p>
+<p>Multiple query formats are supported, with DNS type records A (ipv4), AAAA (ipv6) and TXT returned.</p>
+<h2 id='lookup-access'>Lookup access</h2>
+<p>ZQS provides lookup access for a domain or IP address against the <code>*.{APIKEY}.api.zetascan.com</code> FQDN.</p>
 
-<p>The query string shall be the domain name or IP address, like:</p>
-
-<p><code>
-baddomain.org
-</code></p>
-
-<p>Or:</p>
-
-<p><code>127.9.9.1 or 1234:5678:9abc::</code></p>
-
-<p><em>(not reversed IP, if query type is &#39;A&#39;)</em></p>
-
-<p>Or:</p>
-
-<p><code>reversed as 1.9.9.127.in-addr.arpa</code></p>
-
-<p><code>0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.c.b.a.9.8.7.6.5.4.3.2.1.ip6.arpa</code></p>
-
-<p><em>if query type is &#39;PTR&#39;</em></p>
-
-<p>The server will reply either with a 127.x.x.x code (if the item is in our lists), or with NXDOMAIN response, if the item is not found.</p>
+<p>This end-point can be used by MTA/SMTP software such as Exim, Postfix, Sendmail and more, for Anti-spam lookups and abuse prevention. Zetascan is a drop-in replacement for existing RBL services to provide a seamless anti-spam service.</p>
 
 <aside class="notice">
-Note that for both IPv4 and IPv6 addresses we only return IPv4 response codes!
+Your API-key must be provided as part of the domain-name query.
 </aside>
+<h2 id='domain-query'>Domain query</h2>
+<p>Domain query:</p>
+
+<p> <code>dig A baddomain.org.{key}.api.zetascan.com</code></p>
+
+<p> IPv4 query (213.189.1.4), note the <em>IP must be reversed</em>:</p>
+
+<p><code>dig TXT 4.1.189.213.{key}.api.zetascan.com</code></p>
+
+<p>IPv6 query, note the <em>IP must be reversed and expanded</em>:</p>
+
+<p> <code>dig AAAA 0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.c.b.a.9.8.7.6.5.4.3.2.1.{key}.api.zetascan.com</code></p>
 
 <aside class="notice">
-DNS queries from unregistered IP addresses will be rejected. You need to register all IPs of the machines issuing DNS queries to our servers.
+Using the domain query will access your ISP or specified name-server as the resolver. This method may cache results, and performance will vary depending on the upline nameserver.
 </aside>
+<h2 id='direct-access'>Direct access</h2>
+<p>Alternatively, you can query <code>api.zetascan.com</code> directly as a nameserver and retrieve results. Your IP address must be specified within the <a href="https://zetascan.com/dashboard/?lang=en">Zetascan dashboard</a> for access to be granted.</p>
+
+<aside class="notice">
+If using an on-premise version of Zetascan replace api.zetascan.com with your provided end-point.
+</aside>
+
+<p>Domain query:</p>
+
+<p><code>dig A @api.zetascan.com baddomain.org</code></p>
+
+<p>IPv4 query, note, <em>IP is not</em> reverse formatted.</p>
+
+<p><code>dig TXT @api.zetascan.com 127.9.9.4</code></p>
+
+<p>IPv6 query:</p>
+
+<p><code>dig AAAA @api.zetascan.com ::1</code></p>
+
+<p>PTR IPv4 query (used for reverse IP lookups):</p>
+
+<p><code>dig PTR @api.zetascan.com PTR 1.9.9.127.in-addr.arpa.</code></p>
+
+<p>PTR IPv6 query (used for reverse IP lookups):</p>
+
+<p><code>dig PTR @api.zetascan.com 0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.c.b.a.9.8.7.6.5.4.3.2.1.ip6.arpa</code></p>
+<h1 id='dns-response-codes'>DNS Response codes</h1>
+<p>When querying ZQS via DNS two formatting options are returned, TXT or (A, AAAA, PTR)</p>
+<h2 id='txt-format'>TXT format</h2>
+<p>When querying for the DNS TXT type, if the domain/IP is matched, extended information will be returned for the query.</p>
+
+<p>Query:</p>
+
+<p><code>dig TXT @api.zetascan.com 127.9.9.4</code></p>
+
+<p>Return response:</p>
+
+<p><code>127.9.9.4.     0   IN  TXT &quot;127.9.9.4:true,true,10;med;zetascan.com;99999,-0.1,-0.1,dnswl&quot;</code></p>
+
+<p>The response will be the same format as the <a href="#text-format">HTTP text</a>:</p>
+
+<p>The format for each item is:</p>
+
+<p><code>item:bool,bool,wldata,score,webscore,source</code></p>
+
+<p>Where:</p>
+
+<ul>
+<li><p>the first bool is true, if found in any black list.</p></li>
+<li><p>the second bool is true, if found in any white list.</p></li>
+<li><p>wldata contains the data from the white list (if present)</p></li>
+<li><p>score, returns the score used for MTA/anti-spam abuse.</p></li>
+<li><p>webscore, the returned score for web/application abuse.</p></li>
+<li><p>sources, a comma separated list of which lists the query was matched on.</p></li>
+</ul>
+<h2 id='a-aaaa-ptr-format'>A, AAAA, PTR format</h2>
+<p>When querying via DNS using the A, AAAA, or PTR record types, the following IP addresses will be returned, indicating a match on a specified black-list/white-list, and extended reasons.</p>
 
 <p>Sample dig syntax:</p>
 
-<p><code>dig @api.zetascan.com baddomain.org</code></p>
+<p><code>dig 4.9.9.127.{APIKEY}.api.zetascan.com A</code></p>
 
-<p>Sample NSLOOKUP example:</p>
+<p>Returned data:</p>
 
-<p><code>nslookup baddomain.org api.zetascan.com</code></p>
+<p><code>4.9.9.127.{APIKEY}.api.zetascan.com. 0 IN A 127.8.10.3</code></p>
 
-<p>Note: If you use Windows&#39; nslookup, you must set the following options: nodefname, nosearch.</p>
-<h1 id='dns-response-codes'>DNS Response codes</h1><h2 id='127-0-0-x'>127.0.0.x</h2>
+<p>The IP returned in the 127.X.X.X format is based on the realtime blacklist <code>RBL</code> syntax, pioneered by anti-spam and MTA software.</p>
+
+<p>Examples for each response type listed below:</p>
+<h3 id='127-0-0-x'>127.0.0.x</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1117,7 +1510,7 @@ DNS queries from unregistered IP addresses will be rejected. You need to registe
 <td>SBL Spamhaus DROP/EDROP Data</td>
 </tr>
 </tbody></table>
-<h2 id='127-0-1-x'>127.0.1.x</h2>
+<h3 id='127-0-1-x'>127.0.1.x</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1169,7 +1562,7 @@ DNS queries from unregistered IP addresses will be rejected. You need to registe
 <td>Zero reputation domain</td>
 </tr>
 </tbody></table>
-<h2 id='127-1-0-x'>127.1.0.x</h2>
+<h3 id='127-1-0-x'>127.1.0.x</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1197,7 +1590,7 @@ DNS queries from unregistered IP addresses will be rejected. You need to registe
 <td>Red</td>
 </tr>
 </tbody></table>
-<h2 id='127-8-0-x'>127.8.0.x</h2>
+<h3 id='127-8-0-x'>127.8.0.x</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1295,7 +1688,7 @@ DNS queries from unregistered IP addresses will be rejected. You need to registe
 <td>Added through Self Service without specific category</td>
 </tr>
 </tbody></table>
-<h1 id='zetascan-overview'>Zetascan Overview</h1><h2 id='data-amp-access-methods'>Data &amp; Access Methods</h2>
+<h1 id='technical-overview'>Technical Overview</h1><h2 id='data-amp-access-methods'>Data &amp; Access Methods</h2>
 <p>The ZQS service is accessible via 6 different methods: Browser queries, 4 REST services (Text, HTTP, JSON, JSONx) and DNS.</p>
 
 <p>Currently we derive our results from several providers, including:</p>
@@ -1311,14 +1704,12 @@ DNS queries from unregistered IP addresses will be rejected. You need to registe
 
 <p>ZQS queries are answered in less than 1 millisecond, and expect no longer then 10 milliseconds for a query reply.</p>
 
-<p>An ZQS virtual appliance is also available for on-premises installation for super-fast access. Please contact us for details about that option.</p>
-
 <p>All our sources are updated at very frequent intervals. We are also using real-time streams, so you may rest assured that you get the latest information from ZQS.</p>
-<h1 id='score-calculation'>Score calculation</h1>
-<p>We are calculating the score for each item, based on where it is found, the additional information we have about the item (e.g. exploit type, bot, etc.) and whether it is found in one or more lists.</p>
 
-<p>The minimum score is -0.1, meaning that an item was found in White List only. Score 0 means that the item is not found in our DB, and the maximum score is 1. In general, items with score above 0.35 shall be considered as spam or fraud.</p>
-<h1 id='data-sources'>Data Sources</h1><h2 id='ip-addresses-sources'>IP Addresses sources</h2>
+<aside class="notice">
+An ZQS virtual appliance is also available for on-premises installation for super-fast access. Please contact us for details about that option.
+</aside>
+<h2 id='ip-addresses-sources'>IP Addresses sources</h2>
 <p>We aggregate data from several data streams: </p>
 
 <ul>
@@ -1347,7 +1738,6 @@ DNS queries from unregistered IP addresses will be rejected. You need to registe
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
                 <a href="#" data-language-name="php">php</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
