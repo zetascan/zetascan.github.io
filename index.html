@@ -1773,14 +1773,14 @@ An ZQS virtual appliance is also available for on-premises installation for supe
 <p>More providers will be added in the near future. Stay tuned!</p>
 <h1 id='code-snippets'>Code snippets</h1><h2 id='python'>Python</h2><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Session</span>
 <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
-<span class="n">session</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="s">'https://dev2.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">)</span>
+<span class="n">session</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="s">'https://api.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">)</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="n">url</span><span class="o">=</span><span class="s">'https://dev2.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span>
+  <span class="n">url</span><span class="o">=</span><span class="s">'https://api.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span>
 <span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre><h2 id='node-js'>Node.js</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://dev2.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">,</span>
   <span class="na">json</span><span class="p">:</span> <span class="kc">true</span>
 <span class="p">};</span>
 
@@ -1790,7 +1790,7 @@ An ZQS virtual appliance is also available for on-premises installation for supe
 </code></pre><h2 id='javascript'>Javascript</h2><pre class="highlight javascript tab-javascript"><code><span class="nx">jQuery</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
     <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
-    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://dev2.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">,</span>
     <span class="na">dataType</span><span class="p">:</span> <span class="s1">'JSON'</span><span class="p">,</span>
     <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
