@@ -234,6 +234,9 @@
                   <li>
                     <a href="#ip-authentication" class="toc-h2 toc-link" data-title="Authentication">IP authentication</a>
                   </li>
+                  <li>
+                    <a href="#checking-authentication" class="toc-h2 toc-link" data-title="Authentication">Checking authentication</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -250,6 +253,17 @@
                   </li>
                   <li>
                     <a href="#error-handling" class="toc-h2 toc-link" data-title="API Overview">Error handling</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#data-sources" class="toc-h1 toc-link" data-title="Data Sources">Data Sources</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#ip-addresses-sources" class="toc-h2 toc-link" data-title="Data Sources">IP Addresses sources</a>
+                  </li>
+                  <li>
+                    <a href="#domains-sources" class="toc-h2 toc-link" data-title="Data Sources">Domains sources</a>
                   </li>
               </ul>
           </li>
@@ -302,28 +316,13 @@
                     <a href="#jsonx-response" class="toc-h2 toc-link" data-title="JSONx Format">JSONx response</a>
                   </li>
                   <li>
-                    <a href="#query-parameters" class="toc-h2 toc-link" data-title="JSONx Format">Query Parameters</a>
+                    <a href="#extended-element" class="toc-h2 toc-link" data-title="JSONx Format">Extended element</a>
                   </li>
                   <li>
-                    <a href="#bot" class="toc-h2 toc-link" data-title="JSONx Format">Bot</a>
+                    <a href="#extended-smtp" class="toc-h2 toc-link" data-title="JSONx Format">Extended - SMTP</a>
                   </li>
                   <li>
-                    <a href="#sinkhole" class="toc-h2 toc-link" data-title="JSONx Format">Sinkhole</a>
-                  </li>
-                  <li>
-                    <a href="#web-server-compromises" class="toc-h2 toc-link" data-title="JSONx Format">Web-Server Compromises</a>
-                  </li>
-                  <li>
-                    <a href="#web-server-attacks" class="toc-h2 toc-link" data-title="JSONx Format">Web-Server Attacks</a>
-                  </li>
-                  <li>
-                    <a href="#miscellaneous" class="toc-h2 toc-link" data-title="JSONx Format">Miscellaneous</a>
-                  </li>
-                  <li>
-                    <a href="#unknown" class="toc-h2 toc-link" data-title="JSONx Format">Unknown</a>
-                  </li>
-                  <li>
-                    <a href="#smtp" class="toc-h2 toc-link" data-title="JSONx Format">SMTP</a>
+                    <a href="#extendedsecl-element" class="toc-h2 toc-link" data-title="JSONx Format">ExtendedSecl element</a>
                   </li>
                   <li>
                     <a href="#error-handling-5" class="toc-h2 toc-link" data-title="JSONx Format">Error handling</a>
@@ -365,16 +364,8 @@
                   <li>
                     <a href="#a-aaaa-ptr-format" class="toc-h2 toc-link" data-title="DNS Response codes">A, AAAA, PTR format</a>
                   </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#data-sources" class="toc-h1 toc-link" data-title="Data Sources">Data Sources</a>
-              <ul class="toc-list-h2">
                   <li>
-                    <a href="#ip-addresses-sources" class="toc-h2 toc-link" data-title="Data Sources">IP Addresses sources</a>
-                  </li>
-                  <li>
-                    <a href="#domains-sources" class="toc-h2 toc-link" data-title="Data Sources">Domains sources</a>
+                    <a href="#ipv6-responses" class="toc-h2 toc-link" data-title="DNS Response codes">IPv6 Responses</a>
                   </li>
               </ul>
           </li>
@@ -410,7 +401,7 @@
 
 <ol>
 <li><p>The overlap between data feed providers in the content listed (IPs &amp; URIs), and</p></li>
-<li><p>The absence of normalised meta-data related to the IPs or Domains.</p></li>
+<li><p>The absence of normalized meta-data related to the IPs or Domains.</p></li>
 </ol>
 
 <p>Because of the above, many developers asked if we could do something to reduce the complexity related to accessing and using threat data as part of their applications - ZQS is our solution. We are introducing a <em>more elegant API for developers</em>, with an affordable pricing model to match.</p>
@@ -435,7 +426,7 @@
 <li>Python and NodeJS library, coming soon.</li>
 </ul>
 <h1 id='authentication'>Authentication</h1>
-<p>Authentication to ZQS can be provided via an API key, or specifying your servers&#39; static IP address.</p>
+<p>Authentication to ZQS can be provided via an API key, or by specifying your servers&#39; static IP address.</p>
 <h3 id='api-key'>API key</h3><pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/?key<span class="o">=</span>YOURAPIKEY
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?</span>
 <span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
@@ -459,7 +450,14 @@
 Zetascan only accepts the API key using SSL/https. If using the http interface without SSL, IP authentication must be used.
 </aside>
 <h3 id='ip-authentication'>IP authentication</h3>
-<p>Alternatively, authentication to ZQS can be allowed by providing your servers IP address via the <a href="https://zetascan.com/dashboard/?lang=en">Zetascan dashboard</a>.</p>
+<p>Alternatively, authentication to ZQS can be allowed by providing your servers&#39; IP address via the <a href="https://zetascan.com/dashboard/?lang=en">Zetascan dashboard</a>.</p>
+<h3 id='checking-authentication'>Checking authentication</h3><pre class="highlight shell tab-shell"><code>IP Address:
+curl https://api.zetascan.com/v2/check/auth
+API Key:
+curl https://api.zetascan.com/v2/check/auth?key<span class="o">=</span>YOURAPIKEY
+</code></pre>
+<p>We provide a simple method to check if your requests will be allowed from a given IP or with your API key.
+You&#39;ll get either &#39;Authorized&#39; or &#39;Not Authorized&#39;.</p>
 <h1 id='api-overview'>API Overview</h1><h2 id='query-formats'>Query formats</h2>
 <blockquote>
 <p>Query end-points include 4 formatting options:</p>
@@ -471,20 +469,25 @@ Zetascan only accepts the API key using SSL/https. If using the http interface w
 </code></pre>
 <p>You can issue requests to our endpoints from virtually any operating system or programming language. REST queries are extremely fast and provide the richest set of information about an item.</p>
 
-<p>Each client has unique access key, generated by the system. You need to provide this key, if querying from an unregistered static IP address.</p>
+<p>Each client has a unique access key, generated by the system. You need to provide this key, if querying from an unregistered static IP address.</p>
 
 <p>There are four types of REST queries:</p>
 
 <ul>
-<li>HTTP</li>
-<li>Text</li>
-<li>JSON</li>
-<li>JSONx</li>
+<li>HTTP - response is returned in HTTP headers</li>
+<li>Text - clear text response (comma, semicolon and space delimitated)</li>
+<li>JSON - JSON-formatted document</li>
+<li>JSONx - JSON-formatted document with additional (eXtended) data about items.</li>
 </ul>
 
-<p>The type of desired query is passed in the HTTP request.</p>
+<p>The type of desired query is passed in the HTTP request. 
+The version of the API is now v2. We are constantly adding new features to the API, and increase the API version number. You can use the latest version (recommended), or stick with a previous one.</p>
+
+<ul>
+<li><a href="#dns-api">DNS Queries</a> are another fast and effective way to query ZQS. Using DNS TXT Queries you can get the same response as with a REST TEXT request.</li>
+</ul>
 <h2 id='score-calculation'>Score calculation</h2>
-<p>ZQS provides two scoring mechanisms to grade an IP or domain-name for abuse, anti-spam measures, and trustworthiness. </p>
+<p>ZQS provides two scoring mechanisms to grade an IP or domain-name for abuse, anti-spam measures and trustworthiness. </p>
 
 <p>A negative score, like <code>-0.1</code>, means that an item was matched on a known trusted white-list.</p>
 
@@ -494,9 +497,9 @@ Zetascan only accepts the API key using SSL/https. If using the http interface w
 
 <p>Reference the <a href="#data-sources">data sources</a> chapter for more information on feeds used to calculate the scores.</p>
 <h3 id='webscore'>webscore</h3>
-<p>Webscore is returned by all query methods, which is used to determine a score for integrating your web-application, mobile-app or protecting your application infrastructure.</p>
+<p>Webscore is returned by all query methods. It is used to determine a score for integrating your web-application, mobile-app or protecting your application infrastructure.</p>
 <h3 id='score'>score</h3>
-<p>Score is also returned by all query methods, and it used to determine a specified IP or domain-name for anti-spam abuse via SMTP, useful for MTA and spam-filters. This score takes into consideration email abuse, and uses a different algorithm from the webscore key.</p>
+<p>Score is also returned by all query methods, and it used to check a specified IP or domain-name for anti-spam abuse via SMTP, useful for MTA and spam-filters. This score takes into consideration email abuse, and uses a different algorithm from the &#39;webscore&#39; key.</p>
 <h2 id='test-cases'>Test Cases</h2><h3 id='ip-addresses'>IP Addresses</h3>
 <p>We provide four IPv4 and four IPv6 addresses, which will always return the same answers. Use these for testing and development:</p>
 
@@ -511,13 +514,13 @@ Zetascan only accepts the API key using SSL/https. If using the http interface w
 <p>We provide two testing domains:</p>
 
 <ul>
-<li><p><code>baddomain.org</code> - returns as if found in all domain DB&#39;s: DBL, and all URIBL</p></li>
-<li><p><code>okdomain.org</code> - returns as if found in a White List.</p></li>
+<li><p><code>baddomain.org</code> - returns as if found in all domain DB&#39;s: DBL and all URIBL</p></li>
+<li><p><code>okdomain.org</code> - returns as if found in White List(s).</p></li>
 </ul>
 <h2 id='error-handling'>Error handling</h2>
 <p>When querying ZQS, the following error-codes will be returned if the query or authentication failed. Each query format (Text, HTTP, JSON/JSONx) will embed any error messages in the returned data. Examples on handling errors will be provided for each query format example.</p>
 <h3 id='error-codes'>Error codes</h3>
-<p><code>1</code> - HTTP 404 - Invalid request - the REST path was wrong, e.g. /v2/check/gson/domain.com. Appears in the message body and in the
+<p><code>1</code> - HTTP 404 - Invalid request - the REST path was wrong, e.g. /v2/check/gson/domain.com (gson instead of json). It appears in the message body and in the
 x-zetascan-error header. This is the only error that appears like that,
 others appears in the specified format as per the documentation.</p>
 
@@ -536,6 +539,60 @@ others appears in the specified format as per the documentation.</p>
 <p><code>8</code> - HTTP 404 - HTTP GET request required for queries</p>
 
 <p><code>9</code> - HTTP 403 - Query limit exceeded</p>
+<h1 id='data-sources'>Data Sources</h1>
+<p>Currently we derive our results from several providers, including:</p>
+
+<ul>
+<li>Spamhaus</li>
+<li>Spamhaus real time stream - DBL, SBL and ZRD </li>
+<li>URIBL - different levels of Domain Black Lists and a Domain White List</li>
+<li>DNSWL - IP addresses White List</li>
+<li>Return Path - IP addresses and Domains White Lists (black list coming soon)</li>
+<li>Seclytics - Threat lists for IP addresses with categorization</li>
+</ul>
+
+<aside class="notice">
+URIBL data can be also used for spam detection, based on URLs (links) inside message body.
+</aside>
+
+<p>We also apply internal algorithms for de-duplicating, normalizing and scoring each item in our database, providing a seamless and reliable API end-point for your application.</p>
+
+<p>ZQS queries are answered in less than 1 millisecond, and expect no longer then 10 milliseconds for a query reply.</p>
+
+<p>All our sources are updated at very frequent intervals. We are also using real-time streams, so you may rest assured that you get the latest information from ZQS.</p>
+
+<aside class="notice">
+An ZQS virtual appliance is also available for on-premises installation for super-fast access. Please contact us for details about that option.
+</aside>
+<h2 id='ip-addresses-sources'>IP Addresses sources</h2>
+<p>We aggregate data from several data streams: </p>
+
+<ul>
+<li>Spamhaus PBL</li>
+<li>SBL</li>
+<li>XBL</li>
+<li>CBL</li>
+<li>Spamhaus Real-time stream.</li>
+<li>DNSWL IP addresses White List</li>
+<li>Return Path IP addresses White List</li>
+<li>Seclytics Black Lists</li>
+</ul>
+
+<p>On the other hand, we have also information about White Lists presence of IP address, for example DNSWL.</p>
+
+<p>Unlike other lists, ZQS analyzes the data about each IP address and provides normalized, de-duplicated, and pre-processed information about each IP address, containing internally calculated score (reputation), last modified timestamp, list of BL / WL where the item appears, etc.</p>
+<h2 id='domains-sources'>Domains sources</h2>
+<p>At this stage we aggregate data from two main Domain providers:</p>
+
+<ul>
+<li>Spamhaus DBL Black List</li>
+<li>Real-time Spamhaus ZRD (Zero Reputation Domains) list</li>
+<li>URIBL Black List</li>
+<li>URIBL White List</li>
+<li>Return Path White List</li>
+</ul>
+
+<p>More providers will be added in the near future. Stay tuned!</p>
 <h1 id='http-format'>HTTP Format</h1><pre class="highlight shell tab-shell"><code>curl -i https://api.zetascan.com/v2/check/http/baddomain.org?key<span class="o">=</span>YOURAPIKEY
 
 HTTP/1.1 200 OK
@@ -595,7 +652,7 @@ x-zetascan-fromParent: null
 <span class="p">}</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p>HTTP returns very simple response - found or not, via HTTP response code. If found, the response will be 200 (OK).</p>
+<p>HTTP returns a very simple response - found or not, via HTTP response code. If found, the response will be 200 (OK).</p>
 
 <p>If the item is not present in any black-list/white-list, then the answer will be 204 (No Content).</p>
 
@@ -689,9 +746,9 @@ x-zetascan-time: 1500970900,1500970900
 x-zetascan-webscore: 0.6,null
 x-zetascan-fromParent: null,null
 </code></pre>
-<p>You can send multiple items in a single request by comma delimitating each IP or domain. This will speed up the overall time for answering your query.</p>
+<p>You can send multiple items in a single request by sedning a comma-separated list of IP&#39;s or domains. This will speed up the overall time for answering your query.</p>
 
-<p>The HTTP headers will contain a response for each query, comma delimitated in sequence from the query specified.</p>
+<p>The HTTP headers will contain a response for each query, as a comma-separated list in the same sequence as in the query.</p>
 <h1 id='text-format'>Text Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/v2/check/text/baddomain.org?key<span class="o">=</span>YOURAPIKEY
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?</span>
 <span class="c1">// Text method
@@ -755,37 +812,38 @@ x-zetascan-fromParent: null,null
 <h3 id='format'>Format</h3>
 <p>Items are separated by space. The format for each item is:</p>
 
-<p><code>item:bool,bool,wldata,score,webscore,source</code></p>
+<p><code>item;parent:bool,bool,wldata,score,webscore,source</code></p>
 
 <p>Where:</p>
 
 <ul>
-<li><p>the first bool is true, if found in any black or white list.</p></li>
-<li><p>the second bool is true, if found in any white list.</p></li>
-<li><p>wldata contains the data from the white list (if present)</p></li>
-<li><p>score, returns the score used for MTA/anti-spam abuse.</p></li>
-<li><p>webscore, the returned score for web/application abuse.</p></li>
-<li><p>sources, a comma separated list of which lists the query was matched on.</p></li>
+<li>item or item;parent is the item from the request, or the item and its parent domain (<a href="#fqdn-queries">see FQDN below</a>).</li>
+<li>the first bool is true, if found in any black or white list.</li>
+<li>the second bool is true, if found in any white list.</li>
+<li>wldata contains the data from the white list (if preent)</li>
+<li>score, returns the score used for MTA/anti-spam abuse.</li>
+<li>webscore, the returned score for web/application abuse.</li>
+<li>sources, a comma-separated list of sources where the item was found.</li>
 </ul>
 <h3 id='error-handling-3'>Error handling</h3>
-<p>If an error occurs using the text query, the data returned will contain the an error prefix, followed by an error message, and the specific error-code.</p>
+<p>If an error occurs using the text query, the data returned will contain the item, the string &#39;error&#39;, an error message and a specific error-code.</p>
 
 <p>Example authentication error:</p>
 
-<p><code>error:Wrong API Key;7</code></p>
+<p><code>127.9.9.1:error:Wrong_API_Key;7</code></p>
 
 <p>Malformed query:</p>
 
-<p><code>error:Failed to parse query&#39;s item;3</code></p>
+<p><code>127.a.b.4:error:Failed_to_parse_query&#39;s_item;3</code></p>
 <h2 id='multiple-items-2'>Multiple items</h2>
 <blockquote>
 <p>http://api.zetascan.com/v2/check/text/127.9.9.1,127.9.9.2</p>
 </blockquote>
 <pre class="highlight plaintext"><code>127.9.9.1:true,false,,0.95,0.6,xbl,sbl 127.9.9.2:true,false,,0.2,0,pbl
 </code></pre>
-<p>You can send multiple items in a single request by comma delimitating each IP or domain. This will speed up the overall time for answering your query.</p>
+<p>You can send multiple items in a comma-separated list of IP&#39;s or domains. This will speed up the overall time for answering your query.</p>
 
-<p>The text format, will contain a response for each query, <code>space</code> delimitated.</p>
+<p>The text format will contain a response for each query, delimited by <code>space</code>.</p>
 <h1 id='json-format'>JSON Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/v2/check/json/baddomain.org?key<span class="o">=</span> YOURAPIKEY
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?</span>
 <span class="c1">// PHP example with multi-query support, error checking, and JSON data presented
@@ -873,11 +931,11 @@ The `found` key will be true, if the item is hit in a black-list or white-list. 
 </tr>
 <tr>
 <td>Score</td>
-<td>Score between -0.1 to 1.0 for MTA/Anti-spam abuse. See <a href="#score-calculation">score information</a></td>
+<td>Score between a negative decimal number like -0.2 to 1.0 for MTA/Anti-spam abuse. See <a href="#score-calculation">score information</a></td>
 </tr>
 <tr>
 <td>WebScore</td>
-<td>Scorebetween 0.1 to 1.0 for Web/application abuse.</td>
+<td>Score between a negative decimal number to 1.0 for Web/application abuse.</td>
 </tr>
 <tr>
 <td>FromSubnet</td>
@@ -885,7 +943,7 @@ The `found` key will be true, if the item is hit in a black-list or white-list. 
 </tr>
 <tr>
 <td>Sources</td>
-<td>Black-Lists matched from ZQS. <a href="#data-amp-access-methods">See list</a> information.</td>
+<td>Black-Lists matched from ZQS. <a href="#data-sources">See list</a> information.</td>
 </tr>
 <tr>
 <td>Wl</td>
@@ -893,7 +951,7 @@ The `found` key will be true, if the item is hit in a black-list or white-list. 
 </tr>
 <tr>
 <td>Wldata</td>
-<td>White-Lists matched from ZQS. <a href="#data-amp-access-methods">See list</a> information.</td>
+<td>White-Lists matched from ZQS. <a href="#data-sources">See list</a> information.</td>
 </tr>
 <tr>
 <td>ExecutionTime</td>
@@ -942,9 +1000,9 @@ The `found` key will be true, if the item is hit in a black-list or white-list. 
 </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>You can send multiple items in a single request by comma delimitating each IP or domain. This will speed up the overall time for answering your query.</p>
+<p>You can send multiple items in a single request by passing comma-separated list of IP&#39;s or domains. This will speed up the overall time for answering your query.</p>
 
-<p>The JSON format, will contain a response for each query within the <code>results</code> array</p>
+<p>The JSON format, will contain a response for each query within the <code>results</code> array.</p>
 <h1 id='jsonx-format'>JSONx Format</h1><pre class="highlight shell tab-shell"><code>curl https://api.zetascan.com/v2/check/jsonx/baddomain.org?key<span class="o">=</span>yourkeygoeshere
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?</span>
 <span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
@@ -976,12 +1034,16 @@ The `found` key will be true, if the item is hit in a black-list or white-list. 
 </code></pre>
 <p>JSONx will return also a JSON document, extended with additional information about the last known activity of an fraudulent IP address. The JSONx format only supports <code>IP addresses</code> and not domain queries.</p>
 
-<aside class="success">
-Use JSONx if you require extended information regarding the queried host.
+<aside class="notice">
+Use JSONx if you require extended information regarding the queried host. 
+Note that this format may require slightly more time for processing at the server and in the client, due to the rich information it provides.
 </aside>
 <h3 id='jsonx-response'>JSONx response</h3>
-<p>Responses include additional information about an IP address with fraudulent activity. This information is found in the &#39;extended&#39; and &#39;emailsdaily&#39; fields, e.g.:</p>
-<h3 id='query-parameters'>Query Parameters</h3><pre class="highlight json tab-json"><code><span class="s2">"extended"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+<p>Responses include additional information about an IP address with fraudulent activity.<br>
+This information is found in the <code>&#39;extended&#39;</code> and <code>&#39;extendedSecl&#39;</code> fields.<br>
+The <code>&#39;extended&#39;</code> element contains data from Spamhaus,<br>
+while <code>&#39;extededSecl&#39;</code> contains information from <a href="https://www.seclytics.com/#about">Seclytics</a>.</p>
+<pre class="highlight json tab-json"><code><span class="s2">"extended"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"ASNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23969"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"route"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.200.0/24"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AU"</span><span class="p">,</span><span class="w">
@@ -1000,12 +1062,22 @@ Use JSONx if you require extended information regarding the queried host.
         </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"emailslastday"</span><span class="p">:</span><span class="s2">"123"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+
+    </span><span class="s2">"extendedSecl"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"
+        cidr"</span><span class="p">:</span><span class="s2">"62.196.0.0/16"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asn"</span><span class="p">:</span><span class="mi">3302</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_seen"</span><span class="p">:</span><span class="s2">"2017-01-17"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_seen"</span><span class="p">:</span><span class="s2">"2017-10-23"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"categories"</span><span class="p">:[</span><span class="s2">"scanner"</span><span class="p">,</span><span class="s2">"spam"</span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <aside class="notice">
-The JSONx format will always return an `extended` element, regardless if additional information is available.
+The JSONx format will always return `extended` and  `extendedSecl` element, regardless if additional information is available.
 </aside>
-
+<h2 id='extended-element'>Extended element</h2>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1209,8 +1281,8 @@ The JSONx format will always return an `extended` element, regardless if additio
 <td>SMTP Halo specified</td>
 </tr>
 </tbody></table>
-<h2 id='smtp'>SMTP</h2>
-<p>If using ZQS for MTA/SMTP security, JSONx provides extended information that can assist with spam detection and email security for end-user mailboxes.</p>
+<h2 id='extended-smtp'>Extended - SMTP</h2>
+<p>If using ZQS for MTA/SMTP security, JSONx provides extended information that can assist with spam detection and email security for end-user mailboxes. Check the class key in the <code>reason</code> sub-object.</p>
 <h3 id='loc'>LOC</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"class"</span><span class="p">:</span><span class="s2">"LOC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"helos as destination server"</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <table><thead>
@@ -1349,7 +1421,7 @@ The JSONx format will always return an `extended` element, regardless if additio
 </thead><tbody>
 <tr>
 <td>FAM</td>
-<td>Helos as someone we know they`re not</td>
+<td>Helos as someone we know they&#39;re not</td>
 </tr>
 <tr>
 <td>rdns</td>
@@ -1382,6 +1454,52 @@ The JSONx format will always return an `extended` element, regardless if additio
 <td>Special category for development purposes.</td>
 </tr>
 </tbody></table>
+<h2 id='extendedsecl-element'>ExtendedSecl element</h2>
+<p>This element contails information about the category of the threat, its IP address, ASN and CIDR, when it was first detected and when was the last activity from this IP address. The possible categories are:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>unknown</td>
+<td>Unknown category</td>
+</tr>
+<tr>
+<td>malware, malicious, ransomware</td>
+<td>Varius malicious software, viruses, ransomware</td>
+</tr>
+<tr>
+<td>ddos, bot, botnet</td>
+<td>Botnets</td>
+</tr>
+<tr>
+<td>phishing, defacement</td>
+<td>Phishing, defaced web sites</td>
+</tr>
+<tr>
+<td>spam, backscatter</td>
+<td>Known spam sources</td>
+</tr>
+<tr>
+<td>scanner</td>
+<td>Port scanner</td>
+</tr>
+<tr>
+<td>proxy, tor_list,  tor</td>
+<td>Anonymous proxies</td>
+</tr>
+<tr>
+<td>dyndns</td>
+<td></td>
+</tr>
+<tr>
+<td>suspicious</td>
+<td>Suspicious activity</td>
+</tr>
+</tbody></table>
 <h2 id='error-handling-5'>Error handling</h2>
 <p>Error handling for the JSONx query type is the same as the <a href="#error-handling-4">JSON error handling</a> section. </p>
 <h2 id='multiple-items-4'>Multiple items</h2>
@@ -1395,6 +1513,8 @@ x-zetascan-items: test.baddomain.org
 <p>We now support sub-domains (FQDN queries). Some BL’s and White Lists have sub-domains listed. If the item is not a direct hit, we will check the parent domain. For example:</p>
 
 <p>https://api.zetascan.com/v2/check/{json/jsonx/http/text}/test.baddomain.org</p>
+
+<p>Check the fromParent key with JSON / JSONx, the x-zetascan-fromParent header with HTTP and the item part in a TEXT query, where the parent will appear separated by semicolon.</p>
 <h1 id='dnswl-data-format'>DNSWL data format</h1>
 <p>The White List data can have two formats:</p>
 
@@ -1417,14 +1537,15 @@ x-zetascan-items: test.baddomain.org
 <li><p>Enter one or more IP addresses or domain names;</p></li>
 </ul>
 
-<p>The service will return list of results with details on where the items were found, query time, and calculated score</p>
+<p>The service will return list of results with details on where the items were found, query time, and calculated score.  </p>
 
 <p>Note: a 5 second delay is applied to all anonymous user queries. Please register for an API key to remove this delay.</p>
 
-<p>Alternatively, you can issue a query to our API directly from the browser address bar,
-by entring the query REST URL:</p>
+<p>Alternatively, you can issue a query to our API directly from the browser address bar by entring the query REST URL:</p>
 
 <p>https://api.zetascan.com/v2/check/text/baddomain.org?key=YOURAPIKEY</p>
+
+<p>You can then use Developers Tools (usually F12) in your browser to examine the result.</p>
 <h1 id='dns-api'>DNS API</h1>
 <p>ZQS provides an <code>rbldns</code> service that combines the information from all the sources we aggregate.</p>
 
@@ -1486,42 +1607,44 @@ If using an on-premise version of Zetascan replace api.zetascan.com with your pr
 
 <p>Query:</p>
 
-<p><code>dig TXT @api.zetascan.com 127.9.9.4</code></p>
+<p><code>dig +short TXT @api.zetascan.com 127.9.9.4</code></p>
 
-<p>Return response:</p>
+<p>Returned response:</p>
 
-<p><code>127.9.9.4.     0   IN  TXT &quot;127.9.9.4:true,true,10;med;zetascan.com;99999,-0.1,-0.1,dnswl&quot;</code></p>
+<p><code>&quot;127.9.9.4:true,true,10;med;zetascan.com;99999,-0.1,-0.1,dnswl&quot;</code></p>
 
-<p>The response will be the same format as the <a href="#text-format">HTTP text</a>:</p>
+<p>The response will be the same format as the <a href="#text-format">REST TEXT Query</a>.</p>
 
 <p>The format for each item is:</p>
 
-<p><code>item:bool,bool,wldata,score,webscore,sources</code></p>
+<p><code>item;parent:bool,bool,wldata,score,webscore,sources</code></p>
 
 <p>Where:</p>
 
 <ul>
-<li><p>the first bool is true, if found in any black list.</p></li>
-<li><p>the second bool is true, if found in any white list.</p></li>
-<li><p>wldata contains the <a href="#DNSWL-data-format">data</a> from the white list (if present)</p></li>
-<li><p>score, returns the score used for MTA/anti-spam abuse.</p></li>
-<li><p>webscore, the returned score for web/application abuse.</p></li>
-<li><p>sources, a comma separated list of which lists the query was matched on.</p></li>
+<li>item or item;parent is the item from the request, or the item and its parent domain (<a href="#fqdn-queries">see FQDN</a>).</li>
+<li>the first bool is true, if found in any black list.</li>
+<li>the second bool is true, if found in any white list.</li>
+<li>wldata contains the <a href="#DNSWL-data-format">data</a> from the white list (if present)</li>
+<li>score, returns the score used for MTA/anti-spam abuse.</li>
+<li>webscore, the returned score for web/application abuse.</li>
+<li>sources, a comma separated list of which lists the query was matched on.</li>
 </ul>
 <h2 id='a-aaaa-ptr-format'>A, AAAA, PTR format</h2>
-<p>When querying via DNS using the A, AAAA, or PTR record types, the following IP addresses will be returned, indicating a match on a specified black-list/white-list, and extended reasons.</p>
+<p>When querying via DNS using the A, AAAA, or PTR record types, the following IP addresses will be returned, indicating a match on a specified black-list/white-list and extended reasons.
+Querying with AAAA will return the IPv6 equivalent of the IPv4 responses described below. See <a href="#ipv6-responses">IPv6 Responses</a>.</p>
 
 <p>Sample dig syntax:</p>
 
-<p><code>dig 4.9.9.127.{APIKEY}.api.zetascan.com A</code></p>
+<p><code>dig +short 4.9.9.127.{APIKEY}.api.zetascan.com A</code></p>
 
 <p>Returned data:</p>
 
-<p><code>4.9.9.127.{APIKEY}.api.zetascan.com. 0 IN A 127.8.10.3</code></p>
+<p><code>127.8.10.3</code></p>
 
-<p>The IP returned in the 127.X.X.X format is based on the realtime blacklist <code>RBL</code> syntax, pioneered by anti-spam and MTA software.</p>
+<p>The IP returned in the 127.X.X.X format is based on the real-time blacklist <code>RBL</code> syntax, pioneered by anti-spam and MTA software.</p>
 
-<p>Examples for each response type listed below:</p>
+<p>Values for each response type listed below:</p>
 <h3 id='127-0-0-x-spamhaus-ip-lists'>127.0.0.x - Spamhaus IP lists</h3>
 <table><thead>
 <tr>
@@ -1531,7 +1654,7 @@ If using an on-premise version of Zetascan replace api.zetascan.com with your pr
 </thead><tbody>
 <tr>
 <td>127.0.0.10</td>
-<td>PBL (Public/residential) IP adddresses, reported by ISP</td>
+<td>PBL (Public/residential) IP addresses, reported by ISP</td>
 </tr>
 <tr>
 <td>127.0.0.11</td>
@@ -1630,7 +1753,7 @@ If using an on-premise version of Zetascan replace api.zetascan.com with your pr
 <td>White - a Domain White List from URIBL</td>
 </tr>
 </tbody></table>
-<h3 id='127-8-0-x'>127.8.0.x</h3>
+<h3 id='127-3-0-1-return-path-white-lists-domain-or-ip'>127.3.0.1 - Return Path White Lists (Domain or IP)</h3><h3 id='127-8-0-x-dnswl-ip-white-list'>127.8.0.x - DNSWL (IP White List)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1651,7 +1774,7 @@ If using an on-premise version of Zetascan replace api.zetascan.com with your pr
 </tr>
 <tr>
 <td>127.8.x.4</td>
-<td>High ranking,</td>
+<td>High ranking</td>
 </tr>
 </tbody></table>
 
@@ -1673,7 +1796,7 @@ If using an on-premise version of Zetascan replace api.zetascan.com with your pr
 </tr>
 <tr>
 <td>4</td>
-<td>Organisations (both for-profit [i.e. companies] and non-profit)</td>
+<td>Organizations (both for-profit [i.e. companies] and non-profit)</td>
 </tr>
 <tr>
 <td>5</td>
@@ -1724,63 +1847,103 @@ If using an on-premise version of Zetascan replace api.zetascan.com with your pr
 <td>Added through Self Service without specific category</td>
 </tr>
 </tbody></table>
-<h1 id='data-sources'>Data Sources</h1>
-<p>Currently we derive our results from several providers, including:</p>
+<h3 id='127-2-0-x-seclytics-black-lists'>127.2.0.x - Seclytics Black Lists</h3>
+<p>Where the last digit (x) means the category of the threat:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>unknown</td>
+</tr>
+<tr>
+<td>1</td>
+<td>malware</td>
+</tr>
+<tr>
+<td>2</td>
+<td>botnet</td>
+</tr>
+<tr>
+<td>3</td>
+<td>phishing</td>
+</tr>
+<tr>
+<td>4</td>
+<td>malicious</td>
+</tr>
+<tr>
+<td>5</td>
+<td>spam</td>
+</tr>
+<tr>
+<td>6</td>
+<td>scanner</td>
+</tr>
+<tr>
+<td>7</td>
+<td>proxy</td>
+</tr>
+<tr>
+<td>8</td>
+<td>ddos</td>
+</tr>
+<tr>
+<td>9</td>
+<td>bot</td>
+</tr>
+<tr>
+<td>10</td>
+<td>ransomware</td>
+</tr>
+<tr>
+<td>11</td>
+<td>dyndns</td>
+</tr>
+<tr>
+<td>12</td>
+<td>defacement</td>
+</tr>
+<tr>
+<td>13</td>
+<td>tor_list</td>
+</tr>
+<tr>
+<td>14</td>
+<td>backscatter</td>
+</tr>
+<tr>
+<td>15</td>
+<td>suspicious</td>
+</tr>
+<tr>
+<td>16</td>
+<td>tor</td>
+</tr>
+</tbody></table>
+<h2 id='ipv6-responses'>IPv6 Responses</h2>
+<p>Each of the above responses can be returned as IPv6 address, if you issue AAAA DNS query, in the following format:</p>
 
 <ul>
-<li>Spamhaus</li>
-<li>Spamhaus real time stream - DBL, SBL and ZRD </li>
-<li>URIBL - different levels of Domain Black Lists and a Domain White List</li>
-<li>DNSWL - IP adddresses White List</li>
+<li>The 127 octet is replaced by 2002 hextet.</li>
+<li>The last three hextets are equal to the last three octets in the IPv4 format.</li>
+<li>The rest of the hextets are zeros.</li>
+<li>For example: Seclytics malicious code 127.2.0.4 becomes 2002::0002:0000:0004</li>
 </ul>
-
-<aside class="notice">
-URIBL data can be also used for spam detection, based on URL's (links) inside message body.
-</aside>
-
-<p>We also apply internal algorithms for de-duplicating, normalizing and scoring each item in our database, providing a seamless and reliable API end-point for your application.</p>
-
-<p>ZQS queries are answered in less than 1 millisecond, and expect no longer then 10 milliseconds for a query reply.</p>
-
-<p>All our sources are updated at very frequent intervals. We are also using real-time streams, so you may rest assured that you get the latest information from ZQS.</p>
-
-<aside class="notice">
-An ZQS virtual appliance is also available for on-premises installation for super-fast access. Please contact us for details about that option.
-</aside>
-<h2 id='ip-addresses-sources'>IP Addresses sources</h2>
-<p>We aggregate data from several data streams: </p>
-
-<ul>
-<li>Spamhaus PBL</li>
-<li>SBL</li>
-<li>XBL</li>
-<li>CBL</li>
-<li>Spamhaus Real-time stream.</li>
-<li>DNSWL IP addresses White List</li>
-</ul>
-
-<p>On the other hand, we have also information about White Lists presence of IP address, for example DNSWL.</p>
-
-<p>Unlike other lists, ZQS analyzes the data about each IP address and provides normalized, de-duplicated, and pre-processed information about each IP address, containing internally calculated score (reputation), last modified timestamp, list of BL / WL where the item appears, etc.</p>
-<h2 id='domains-sources'>Domains sources</h2>
-<p>At this stage we aggregate data from two main Domain providers:</p>
-
-<ul>
-<li>Spamhaus DBL and URIBL</li>
-<li>Real-time Spamhaus ZRD (Zero Reputation Domains) list.</li>
-</ul>
-
-<p>More providers will be added in the near future. Stay tuned!</p>
 <h1 id='code-snippets'>Code snippets</h1><h2 id='python'>Python</h2><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Session</span>
 <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
-<span class="n">session</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="s">'https://api.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">)</span>
+<span class="n">session</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="s">'https://dev2.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">)</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="n">url</span><span class="o">=</span><span class="s">'https://api.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span>
+  <span class="n">url</span><span class="o">=</span><span class="s">'https://dev2.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span>
 <span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre><h2 id='node-js'>Node.js</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://dev2.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">,</span>
   <span class="na">json</span><span class="p">:</span> <span class="kc">true</span>
 <span class="p">};</span>
 
@@ -1790,7 +1953,7 @@ An ZQS virtual appliance is also available for on-premises installation for supe
 </code></pre><h2 id='javascript'>Javascript</h2><pre class="highlight javascript tab-javascript"><code><span class="nx">jQuery</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
     <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
-    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://dev2.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">,</span>
     <span class="na">dataType</span><span class="p">:</span> <span class="s1">'JSON'</span><span class="p">,</span>
     <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
