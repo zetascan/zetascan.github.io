@@ -376,7 +376,10 @@
                     <a href="#providers" class="toc-h2 toc-link" data-title="Scoring factors">Providers</a>
                   </li>
                   <li>
-                    <a href="#multiples-matches" class="toc-h2 toc-link" data-title="Scoring factors">Multiples matches</a>
+                    <a href="#multiple-matches" class="toc-h2 toc-link" data-title="Scoring factors">Multiple matches</a>
+                  </li>
+                  <li>
+                    <a href="#propagation" class="toc-h2 toc-link" data-title="Scoring factors">Propagation</a>
                   </li>
               </ul>
           </li>
@@ -2190,24 +2193,26 @@ Querying with AAAA will return the IPv6 equivalent of the IPv4 responses describ
 <td>-0.1</td>
 </tr>
 </tbody></table>
-<h2 id='multiples-matches'>Multiples matches</h2>
-<p>If an item is found in more than one source, a score of 0.05 is added to the total calculated as per the tables above.
-For example, an item found in Spamhaus&#39; SBL and PBL, and Seclytics&#39; Suspicious category, will have score of 0.8 (0.4 + 0.1 + 0.2 + (2x0.05))
-This is also true for White Lists, so an item found in two White Lists will have a score of -0.25.</p>
+<h2 id='multiple-matches'>Multiple matches</h2>
+<p>If an item is found in more than one source, a score of 0.05 is added to the total calculated as per the tables above. 
+For example, an item found in Spamhaus&#39; SBL and PBL, and Seclytics&#39; Suspicious category, will have score of 0.8 (0.4 + 0.1 + 0.2 + (2x0.05)) 
+This is also true for White Lists, so an item found in two White Lists will have a score of -0.25. </p>
 
 <aside class="notice">
 Score and Web Score will never exceed 1. Basically any item with score above 0.3 is very suspicious. Items with scores above 0.5-0.6 shall be always blocked!
 </aside>
+<h2 id='propagation'>Propagation</h2>
+<p>In the upcoming release we will provide a Propagation score, measuring the speed of detection of new threats, based on internal information we have and rate of updates and queries for a given item.</p>
 <h1 id='code-snippets'>Code snippets</h1><h2 id='python'>Python</h2><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Session</span>
 <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
-<span class="n">session</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="s">'https://dev2.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">)</span>
+<span class="n">session</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="s">'https://api.zetascan.com/v2/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">)</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="n">url</span><span class="o">=</span><span class="s">'https://dev2.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span>
+  <span class="n">url</span><span class="o">=</span><span class="s">'https://api.zetascan.com/v2/check/json/127.9.9.1?key=yourkeygoeshere'</span>
 <span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre><h2 id='node-js'>Node.js</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://dev2.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.zetascan.com/v2/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">,</span>
   <span class="na">json</span><span class="p">:</span> <span class="kc">true</span>
 <span class="p">};</span>
 
@@ -2217,7 +2222,7 @@ Score and Web Score will never exceed 1. Basically any item with score above 0.3
 </code></pre><h2 id='javascript'>Javascript</h2><pre class="highlight javascript tab-javascript"><code><span class="nx">jQuery</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
     <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
-    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://dev2.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.zetascan.com/v2/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">,</span>
     <span class="na">dataType</span><span class="p">:</span> <span class="s1">'JSON'</span><span class="p">,</span>
     <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
