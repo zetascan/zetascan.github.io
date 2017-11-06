@@ -370,6 +370,17 @@
               </ul>
           </li>
           <li>
+            <a href="#scoring-factors" class="toc-h1 toc-link" data-title="Scoring factors">Scoring factors</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#providers" class="toc-h2 toc-link" data-title="Scoring factors">Providers</a>
+                  </li>
+                  <li>
+                    <a href="#multiples-matches" class="toc-h2 toc-link" data-title="Scoring factors">Multiples matches</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#code-snippets" class="toc-h1 toc-link" data-title="Code snippets">Code snippets</a>
               <ul class="toc-list-h2">
                   <li>
@@ -495,7 +506,8 @@ The version of the API is now v2. We are constantly adding new features to the A
 
 <p>A score between <code>0 - 1.0</code> is a rating on the specified domain or IP address. Scores above <code>0.35</code> should be considered as spam or fraudulent.</p>
 
-<p>Reference the <a href="#data-sources">data sources</a> chapter for more information on feeds used to calculate the scores.</p>
+<p>Reference the <a href="#data-sources">data sources</a> chapter for more information on feeds used to calculate the scores.
+See the <a href="#scoring-factors">Scoring Factors</a> section for exact values and logic used when generating item&#39;s score.</p>
 <h3 id='webscore'>webscore</h3>
 <p>Webscore is returned by all query methods. It is used to determine a score for integrating your web-application, mobile-app or protecting your application infrastructure.</p>
 <h3 id='score'>score</h3>
@@ -1934,6 +1946,258 @@ Querying with AAAA will return the IPv6 equivalent of the IPv4 responses describ
 <li>The rest of the hextets are zeros.</li>
 <li>For example: Seclytics malicious code 127.2.0.4 becomes 2002::0002:0000:0004</li>
 </ul>
+<h1 id='scoring-factors'>Scoring factors</h1><h2 id='providers'>Providers</h2><h3 id='spamhaus'>Spamhaus</h3>
+<table><thead>
+<tr>
+<th>Source</th>
+<th>Score (SPAM)</th>
+<th>Web Score</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>SBL</td>
+<td>0.4</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>DBL</td>
+<td>0.45</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>XBL</td>
+<td>0.4</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>PBL</td>
+<td>0.2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>CBL Web Attacks</td>
+<td>0.2</td>
+<td>0.3</td>
+</tr>
+<tr>
+<td>CBL Web Server Compromises</td>
+<td>0.2</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>CBL Sinkhole</td>
+<td>0.2</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>CBL Others</td>
+<td>0.2</td>
+<td>0.05</td>
+</tr>
+<tr>
+<td>ZRD</td>
+<td>0.25</td>
+<td>0.25</td>
+</tr>
+<tr>
+<td>BOTNET</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>DROP</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<h3 id='uribl'>URIBL</h3>
+<table><thead>
+<tr>
+<th>Source</th>
+<th>Score (SPAM)</th>
+<th>Web Score</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Black</td>
+<td>0.3</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>Gold</td>
+<td>0.15</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>Red</td>
+<td>0.1</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>Gray</td>
+<td>0.05</td>
+<td>0.05</td>
+</tr>
+<tr>
+<td>White</td>
+<td>-0.1</td>
+<td>-0.1</td>
+</tr>
+</tbody></table>
+<h3 id='seclytics'>Seclytics</h3>
+<table><thead>
+<tr>
+<th>Source</th>
+<th>Score (SPAM)</th>
+<th>Web Score</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>malware</td>
+<td>0.9</td>
+<td>0.9</td>
+</tr>
+<tr>
+<td>botnet</td>
+<td>0.7</td>
+<td>0.7</td>
+</tr>
+<tr>
+<td>phishing</td>
+<td>0.5</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>malicious</td>
+<td>0.6</td>
+<td>0.6</td>
+</tr>
+<tr>
+<td>spam</td>
+<td>0.4</td>
+<td>0.3</td>
+</tr>
+<tr>
+<td>scanner</td>
+<td>0.2</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>proxy</td>
+<td>0.3</td>
+<td>0.3</td>
+</tr>
+<tr>
+<td>ddos</td>
+<td>0.8</td>
+<td>0.8</td>
+</tr>
+<tr>
+<td>bot</td>
+<td>0.3</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>ransomware</td>
+<td>0.7</td>
+<td>0.7</td>
+</tr>
+<tr>
+<td>dyndns</td>
+<td>0.2</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>defacement</td>
+<td>0.3</td>
+<td>0.3</td>
+</tr>
+<tr>
+<td>tor_list</td>
+<td>0.3</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>backscatter</td>
+<td>0.4</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>suspicious</td>
+<td>0.1</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>tor</td>
+<td>0.3</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>unknown</td>
+<td>0.1</td>
+<td>0.1</td>
+</tr>
+</tbody></table>
+<h3 id='vade-secure'>Vade Secure</h3>
+<table><thead>
+<tr>
+<th>Source</th>
+<th>Score (SPAM)</th>
+<th>Web Score</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Domains BL</td>
+<td>0.8</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>IP BL</td>
+<td>0.85</td>
+<td>0.45</td>
+</tr>
+</tbody></table>
+<h3 id='dnswl'>DNSWL</h3>
+<table><thead>
+<tr>
+<th>Source</th>
+<th>Score (SPAM)</th>
+<th>Web Score</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>IP WL</td>
+<td>-0.1</td>
+<td>-0.1</td>
+</tr>
+</tbody></table>
+<h3 id='return-path-white-list'>Return Path - White List</h3>
+<table><thead>
+<tr>
+<th>Source</th>
+<th>Score (SPAM)</th>
+<th>Web Score</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>IP WL</td>
+<td>-0.1</td>
+<td>-0.1</td>
+</tr>
+<tr>
+<td>Domains WL</td>
+<td>-0.1</td>
+<td>-0.1</td>
+</tr>
+</tbody></table>
+<h2 id='multiples-matches'>Multiples matches</h2>
+<p>If an item is found in more than one source, a score of 0.05 is added to the total calculated as per the tables above.
+For example, an item found in Spamhaus&#39; SBL and PBL, and Seclytics&#39; Suspicious category, will have score of 0.8 (0.4 + 0.1 + 0.2 + (2x0.05))
+This is also true for White Lists, so an item found in two White Lists will have a score of -0.25.</p>
+
+<aside class="notice">
+Score and Web Score will never exceed 1. Basically any item with score above 0.3 is very suspicious. Items with scores above 0.5-0.6 shall be always blocked!
+</aside>
 <h1 id='code-snippets'>Code snippets</h1><h2 id='python'>Python</h2><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Session</span>
 <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
 <span class="n">session</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="s">'https://dev2.zetascan.com/v1/check/json/127.9.9.1?key=yourkeygoeshere'</span><span class="p">)</span>
