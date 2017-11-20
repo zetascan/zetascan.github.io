@@ -512,7 +512,8 @@ The version of the API is now v2. We are constantly adding new features to the A
 <p>Reference the <a href="#data-sources">data sources</a> chapter for more information on feeds used to calculate the scores.
 See the <a href="#scoring-factors">Scoring Factors</a> section for exact values and logic used when generating item&#39;s score.</p>
 <h3 id='webscore'>webscore</h3>
-<p>Webscore is returned by all query methods. It is used to determine a score for integrating your web-application, mobile-app or protecting your application infrastructure.</p>
+<p>Webscore is returned by all query methods, except DNS A and AAAA queries. 
+It is used to determine a score for integrating your web-application, mobile-app or protecting your application infrastructure.</p>
 <h3 id='score'>score</h3>
 <p>Score is also returned by all query methods, and it used to check a specified IP or domain-name for anti-spam abuse via SMTP, useful for MTA and spam-filters. This score takes into consideration email abuse, and uses a different algorithm from the &#39;webscore&#39; key.</p>
 <h2 id='test-cases'>Test Cases</h2><h3 id='ip-addresses'>IP Addresses</h3>
@@ -522,7 +523,7 @@ See the <a href="#scoring-factors">Scoring Factors</a> section for exact values 
 <li><code>127.9.9.1</code> - returning as if found in SBL, XBL &amp; CBL</li>
 <li><code>127.9.9.2</code> - returning as if in PBL</li>
 <li><code>127.9.9.3</code> - returning as if in SBL subnet</li>
-<li><code>127.9.9.4</code> - good IP, found in DNSWL, also contains White List data</li>
+<li><code>127.9.9.4</code> - good IP, found in Return Path White List and DNSWL, also contains DNSWL White List data</li>
 <li><code>::1, ::2, ::3, ::4</code> - returning as above for IPv6, except for ::2, which is found both in PBL and DNSWL (example of a false positive)</li>
 </ul>
 <h3 id='domains'>Domains</h3>
@@ -564,6 +565,7 @@ others appears in the specified format as per the documentation.</p>
 <li>DNSWL - IP addresses White List</li>
 <li>Return Path - IP addresses and Domains White Lists (black list coming soon)</li>
 <li>Seclytics - Threat lists for IP addresses with categorization</li>
+<li>Vade Secure - Domains black list</li>
 </ul>
 
 <aside class="notice">
